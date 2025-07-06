@@ -1,0 +1,2367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abbey Dawn: Last Stand - Full Campaign Rules</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;600&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Base Body Styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1a26; /* Deeper dark blue-grey background */
+            color: #f5f5dc; /* Ivory text */
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            background-image: url('https://placehold.co/1920x1080/0d1a26/0d1a26/png?text='); /* Subtle background texture placeholder */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* Container for the Rules */
+        .container {
+            background-color: rgba(15, 25, 35, 0.98); /* Slightly transparent dark background */
+            border: 8px solid; /* Thicker, more prominent border */
+            border-image: linear-gradient(to bottom right, #8a7a4b, #b09860, #8a7a4b) 1; /* Muted regal gold gradient border for grim feel */
+            border-radius: 20px; /* Slightly more rounded corners */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7); /* Stronger shadow for depth */
+            max-width: 900px; /* Wider for more content */
+            width: 100%;
+            padding: 40px; /* More padding */
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out forwards; /* Simple fade-in animation */
+        }
+
+        /* Inner decorative border */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 2px dashed #2a8d54; /* Muted Emerald dashed border for elegance */
+            border-radius: 15px;
+            pointer-events: none; /* Ensure it doesn't interfere with clicks */
+        }
+
+        /* Headings */
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif; /* Regal font for main headers */
+            color: #b09860; /* Muted richer gold for headings */
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            position: relative;
+            text-transform: uppercase; /* Capitalize */
+        }
+        h1 {
+            font-size: 4.5rem; /* Further increased */
+            letter-spacing: 6px; /* More spacing */
+            text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.8); /* Stronger, darker shadow */
+        }
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px; /* Longer line */
+            height: 6px; /* Thicker line */
+            background: linear-gradient(to right, #8a7a4b, #b09860, #8a7a4b); /* Muted gold line under title */
+            border-radius: 50%; /* Rounded line */
+        }
+        h2 {
+            font-size: 3.5rem; /* Further increased */
+            letter-spacing: 4px;
+            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6); /* Darker shadow */
+            margin-top: 35px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #2a8d54; /* Muted Emerald line */
+        }
+        h3 {
+            font-size: 2.8rem; /* Further increased */
+            letter-spacing: 3px;
+            color: #b09860; /* Make h3 also gold for consistency with regal theme */
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5); /* Darker shadow */
+            margin-top: 25px;
+            padding-bottom: 5px;
+            border-bottom: 1px dotted #6b8e23; /* Darker emerald dotted line for sub-subheadings */
+            text-align: left; /* Align h3 to left */
+        }
+
+        /* Paragraphs and Lists */
+        p {
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+            color: #e0e0e0; /* Slightly darker ivory text for readability */
+        }
+        ul {
+            list-style-type: none; /* Remove default bullet */
+            margin-left: 0;
+            padding-left: 25px; /* Indent for custom bullet */
+            margin-bottom: 18px;
+        }
+        ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px; /* Space for custom bullet */
+        }
+        ul li::before {
+            content: '⚜'; /* Fleur-de-lis or similar regal symbol */
+            color: #b09860; /* Muted gold color for bullets */
+            position: absolute;
+            left: 0;
+            font-size: 0.9em;
+            top: 0;
+        }
+        ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+            margin-bottom: 18px;
+            color: #e0e0e0; /* Ivory for ordered list numbers */
+        }
+        ol li {
+            list-style-type: decimal; /* Keep decimal for ordered lists */
+            padding-left: 0;
+        }
+        ol li::before {
+            content: none; /* Remove custom bullet for ordered lists */
+        }
+
+        /* Strong/Emphasis */
+        strong {
+            color: #b09860; /* Muted deeper gold for strong text */
+            font-weight: 700;
+        }
+
+        /* Keywords */
+        .keyword {
+            font-weight: 700;
+            color: #5cb85c; /* A slightly darker emerald for keywords */
+            padding: 2px 5px;
+            background-color: rgba(92, 184, 92, 0.1); /* Slightly darker emerald highlight */
+            border-radius: 3px;
+        }
+
+        /* Examples */
+        .example {
+            font-style: italic;
+            color: #a0a0a0; /* Darker muted silver/grey for examples */
+            margin-top: 10px;
+            margin-left: 20px;
+            border-left: 4px solid #2a8d54; /* Muted Emerald border for examples */
+            padding-left: 15px;
+            background-color: rgba(30, 45, 60, 0.8); /* Darker, slightly more opaque background for examples */
+            border-radius: 5px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 35px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #6b8e23; /* Subtle darker emerald dashed line separating sections */
+        }
+        .section:last-child {
+            border-bottom: none; /* No border for the last section */
+        }
+
+        /* Flavor Dialogue */
+        .dialogue {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #9c8b5b; /* Darker gold for dialogue */
+            text-align: center;
+            margin: 25px auto;
+            padding: 15px 20px;
+            border: 1px solid #8a7a4b; /* Muted gold border */
+            border-radius: 10px;
+            background-color: rgba(138, 122, 75, 0.15); /* Darker gold transparent background */
+            max-width: 70%;
+            font-size: 1.1rem;
+            line-height: 1.4;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4); /* Stronger shadow */
+        }
+
+        /* Battlefield Depiction */
+        .battlefield-depiction {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: rgba(20, 35, 50, 0.8); /* Darker background */
+            border: 1px solid #b09860; /* Muted gold border */
+            border-radius: 10px;
+            text-align: center;
+        }
+        .battlefield-depiction h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: #b09860;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+        }
+        .battlefield-grid {
+            position: relative;
+            width: 100%;
+            padding-bottom: 50%; /* Aspect ratio for a wide board */
+            background-color: #1a2a3a; /* Even darker board background */
+            border: 2px solid #4a6b1a; /* Darker emerald border */
+            border-radius: 8px;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top for better piece placement */
+            overflow: hidden;
+        }
+        .battlefield-grid::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(0deg, transparent 9%, rgba(255,255,255,0.08) 10%, rgba(255,255,255,0.08) 11%, transparent 12%),
+                              linear-gradient(90deg, transparent 9%, rgba(255,255,255,0.08) 10%, rgba(255,255,255,0.08) 11%, transparent 12%);
+            background-size: 10% 10%; /* Grid lines */
+            pointer-events: none;
+        }
+
+        .battle-piece {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); /* Stronger shadow */
+            font-size: 0.75rem;
+            color: #0a1a2a; /* Darker text */
+            text-align: center;
+            line-height: 1.2;
+        }
+        .battle-piece.hero-mini {
+            width: 8%;
+            height: 12%;
+            background-color: #b09860; /* Muted gold */
+            border: 2px solid #8a7a4b; /* Muted gold border */
+            border-radius: 50%;
+            font-size: 0.9rem;
+            color: #0a1a2a;
+            z-index: 2;
+        }
+        .battle-piece.unit-card-on-board {
+            width: 10%;
+            height: 15%;
+            background-color: #d0d0c0; /* Slightly darker ivory */
+            border: 1px solid #8a7a4b; /* Muted gold border */
+            border-radius: 5px;
+            flex-direction: column;
+            padding: 5px;
+            z-index: 1;
+        }
+        .unit-card-on-board .unit-name {
+            font-weight: bold;
+            font-size: 0.8em;
+            margin-bottom: 2px;
+        }
+        .unit-card-on-board .unit-stats {
+            font-size: 0.7em;
+        }
+        .battle-piece.enemy-mini {
+            width: 8%;
+            height: 12%;
+            background-color: #6d0000; /* Darker red */
+            border: 2px solid #b33a00; /* Darker orange-red */
+            border-radius: 50%;
+            font-size: 0.9rem;
+            color: #f5f5dc;
+            z-index: 2;
+        }
+
+        /* Terrain for Battlefield Depiction */
+        .battlefield-depiction .terrain-element {
+            position: absolute;
+            background-color: rgba(70, 100, 20, 0.4); /* Darker forest green */
+            border: 1px dashed #6b8e23; /* Darker emerald */
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #e0e0e0;
+            font-size: 0.7em;
+            text-align: center;
+            padding: 3px;
+        }
+        .battlefield-depiction .terrain-element.ruin {
+            background-color: rgba(110, 95, 50, 0.4); /* Darker stone/ruin color */
+            border: 1px dashed #b09860; /* Muted gold */
+        }
+        .battlefield-depiction .terrain-element.objective {
+            background-color: rgba(180, 150, 90, 0.5); /* Darker objective highlight */
+            border: 2px solid #8a7a4b; /* Muted gold */
+            border-radius: 50%;
+            font-weight: bold;
+        }
+        .battlefield-depiction .terrain-element.void-zone {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 2px dashed #b33a00; /* Darker red */
+            color: #e0e0e0;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            box-shadow: inset 0 0 10px rgba(255, 0, 0, 0.6); /* Stronger red glow */
+            line-height: 1.2;
+        }
+
+        /* Arrows for Interactions */
+        .interaction-arrow {
+            position: absolute;
+            background-color: #5cb85c; /* Muted emerald green for interaction */
+            height: 2px;
+            transform-origin: left center;
+            pointer-events: none;
+            z-index: 3; /* Above pieces */
+        }
+        .interaction-arrow::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 5px 0 5px 8px; /* Arrowhead */
+            border-color: transparent transparent transparent #5cb85c;
+            right: -8px;
+            top: -4px;
+        }
+
+        .interaction-arrow.charge {
+            background-color: #b09860; /* Muted gold for charge */
+            height: 3px;
+        }
+        .interaction-arrow.charge::after {
+            border-color: transparent transparent transparent #b09860;
+            border-width: 6px 0 6px 10px;
+        }
+
+        .interaction-arrow.ranged {
+            background-color: #6b8e23; /* Darker emerald for ranged */
+            height: 2px;
+            border-style: dotted;
+            border-width: 0 0 0 2px;
+        }
+        .interaction-arrow.ranged::after {
+            border-color: transparent transparent transparent #6b8e23;
+        }
+
+        .interaction-arrow.movement {
+            background-color: #9c8b5b; /* Darker muted gold for movement */
+            height: 2px;
+            border-style: dashed;
+            border-width: 0 0 0 2px;
+        }
+        .interaction-arrow.movement::after {
+            border-color: transparent transparent transparent #9c8b5b;
+        }
+
+        .interaction-arrow.support {
+            background-color: #2a8d54; /* Darker emerald for support */
+            height: 2px;
+            border-style: solid;
+            border-width: 0 0 0 2px;
+        }
+        .interaction-arrow.support::after {
+            border-color: transparent transparent transparent #2a8d54;
+        }
+
+
+        /* Game In Play Example (kept for consistency, but simplified) */
+        .game-in-play-example {
+            margin-top: 40px;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: rgba(10, 20, 30, 0.95); /* Even darker background */
+            border-radius: 15px;
+            border: 2px solid #b09860; /* Muted gold border */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); /* Stronger shadow */
+        }
+        .gameboard-visual {
+            position: relative;
+            width: 100%;
+            padding-bottom: 80%; /* 50x40 aspect ratio (40/50 = 0.8) */
+            background-color: #1a2a3a; /* Darker board background */
+            border: 3px solid #4a6b1a; /* Darker emerald border for the board */
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+        .gameboard-visual-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(45deg, rgba(0,0,0,0.15) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0.15)),
+                              linear-gradient(45deg, rgba(0,0,0,0.15) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0.15));
+            background-size: 20% 20%; /* Grid pattern */
+            background-position: 0 0, 10% 10%;
+        }
+
+        .terrain {
+            position: absolute;
+            background-color: rgba(70, 100, 20, 0.5); /* Darker Emerald transparent */
+            border: 1px dashed #6b8e23; /* Darker emerald */
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #e0e0e0;
+            font-size: 0.8em;
+            text-align: center;
+            padding: 5px;
+        }
+        .terrain.ruin { background-color: rgba(110, 95, 50, 0.5); border: 1px dashed #b09860; } /* Darker Gold transparent */
+        .terrain.objective { background-color: rgba(180, 150, 90, 0.7); border: 2px solid #8a7a4b; border-radius: 50%; width: 10%; height: 12.5%; font-weight: bold; } /* Darker Gold objective */
+        .terrain.void {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px dashed #b33a00; /* Darker Red for voids */
+            color: #e0e0e0;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: inset 0 0 12px rgba(255, 0, 0, 0.7); /* Stronger red glow */
+            line-height: 1.2;
+        }
+
+        .game-piece {
+            position: absolute;
+            width: 5%;
+            height: 6.25%; /* Maintain aspect ratio for circles */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            color: #0a1a2a;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+        }
+        .game-piece.hero { background-color: #b09860; border: 2px solid #8a7a4b; } /* Muted gold hero */
+        .game-piece.enemy { background-color: #6d0000; border: 2px solid #b33a00; color: #f5f5dc; } /* Darker red enemy */
+        .game-piece.unit-card-on-board {
+            background-color: #d0d0c0; /* Darker ivory */
+            border: 1px solid #8a7a4b;
+            border-radius: 3px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.6em;
+            text-align: center;
+            color: #0a1a2a;
+            padding: 2px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+            width: 6%; /* Card size on board */
+            height: 7.5%; /* Card size on board */
+            border-radius: 5px; /* Slightly rounded corners for card */
+            font-weight: normal;
+            text-transform: none;
+        }
+        .game-piece.unit-card-on-board .unit-name {
+            font-weight: bold;
+            font-size: 0.8em;
+            margin-bottom: 2px;
+        }
+        .game-piece.unit-card-on-board .unit-stats {
+            font-size: 0.7em;
+            line-height: 1.2;
+        }
+
+
+        .active-card-on-board {
+            position: absolute;
+            width: 6%; /* Smaller card on board */
+            height: 7.5%;
+            background-color: #d0d0c0; /* Darker ivory */
+            border: 1px solid #8a7a4b;
+            border-radius: 3px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.6em;
+            text-align: center;
+            color: #0a1a2a;
+            padding: 2px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-zones-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .game-zone {
+            width: 150px;
+            height: 200px;
+            border: 2px dashed #2a8d54; /* Muted emerald */
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #b09860; /* Muted gold */
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            background-color: rgba(20, 35, 50, 0.9); /* Darker background */
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+        }
+        .game-zone.deck { border-color: #8a7a4b; } /* Muted gold */
+        .game-zone.discard { border-color: #9c8b5b; } /* Darker muted gold */
+        .game-zone.hand { border-color: #5cb85c; } /* Muted emerald */
+
+        /* Hero and Warscroll Styling */
+        .hero-section {
+            background-color: rgba(15, 25, 35, 0.98); /* Darker background */
+            border: 2px solid #b09860; /* Muted gold */
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+        }
+        .hero-section h4 {
+            font-family: 'Cinzel', serif; /* Regal font for hero names */
+            font-size: 2.2rem; /* Larger hero name */
+            color: #5cb85c; /* Muted vibrant emerald for hero names */
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5); /* Stronger shadow */
+        }
+        .hero-section .hero-subtitle {
+            font-size: 1.1rem;
+            color: #9c8b5b; /* Darker muted gold */
+            text-align: center;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .hero-section .hero-story {
+            margin-bottom: 20px;
+            border-left: 3px solid #8a7a4b; /* Muted gold */
+            padding-left: 15px;
+            color: #e0e0e0;
+        }
+        .hero-section .hero-story strong {
+            color: #b09860;
+        }
+        .warscroll-card {
+            background-color: rgba(20, 35, 50, 0.98); /* Even darker for warscroll */
+            border: 3px solid #2a8d54; /* Muted emerald border for warscroll */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6); /* Stronger shadow */
+            padding: 20px;
+            width: 100%; /* Full width within hero section */
+            margin-top: 20px;
+        }
+        .warscroll-card .warscroll-header {
+            font-family: 'Cinzel', serif; /* Regal font for warscroll header */
+            font-size: 1.8rem;
+            color: #b09860;
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #8a7a4b;
+            padding-bottom: 8px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+        }
+        .warscroll-card .statline {
+            display: flex;
+            justify-content: space-around;
+            background-color: rgba(0, 0, 0, 0.5); /* Darker background */
+            padding: 12px 0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #6b8e23; /* Darker emerald */
+        }
+        .warscroll-card .stat {
+            text-align: center;
+            font-weight: bold;
+            color: #5cb85c; /* Muted emerald */
+            font-size: 1.2rem;
+        }
+        .warscroll-card .stat span {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: normal;
+            color: #e0e0e0;
+        }
+        .warscroll-card table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .warscroll-card th, .warscroll-card td {
+            border: 1px solid rgba(255, 255, 255, 0.1); /* More subtle border */
+            padding: 10px;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+        .warscroll-card th {
+            background-color: rgba(0, 0, 0, 0.6); /* Darker background */
+            color: #b09860;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+        .warscroll-card td {
+            background-color: rgba(0, 0, 0, 0.4); /* Darker background */
+            color: #e0e0e0;
+        }
+        .warscroll-card .ability-section, .warscroll-card .keyword-section {
+            margin-bottom: 15px;
+        }
+        .warscroll-card .ability-section h5, .warscroll-card .keyword-section h5 {
+            font-family: 'Cinzel', serif; /* Regal font for ability/keyword headers */
+            font-size: 1.4rem;
+            color: #2a8d54; /* Darker emerald */
+            border-bottom: 1px dotted #6b8e23; /* Darker emerald */
+            padding-bottom: 5px;
+            margin-bottom: 12px;
+            text-align: left;
+        }
+        .warscroll-card .ability-text {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #e0e0e0;
+        }
+        .warscroll-card .keywords-list {
+            font-size: 0.95rem;
+            color: #9c8b5b; /* Darker muted gold */
+            font-style: italic;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+                border-radius: 15px;
+            }
+            h1 {
+                font-size: 3.2rem;
+            }
+            h2 {
+                font-size: 2.4rem;
+            }
+            h3 {
+                font-size: 1.8rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            .dialogue {
+                max-width: 90%;
+                font-size: 1rem;
+            }
+            .battle-piece.hero-mini {
+                width: 10%;
+                height: 15%;
+            }
+            .battle-piece.unit-card-on-board {
+                width: 12%;
+                height: 18%;
+            }
+            .battle-piece.enemy-mini {
+                width: 10%;
+                height: 15%;
+            }
+            .game-piece.unit-card-on-board {
+                width: 9%;
+                height: 11.25%;
+                font-size: 0.5em;
+            }
+            .game-piece.unit-card-on-board .unit-name {
+                font-size: 0.7em;
+            }
+            .game-piece.unit-card-on-board .unit-stats {
+                font-size: 0.6em;
+            }
+            .game-zone {
+                width: 120px;
+                height: 160px;
+                font-size: 1rem;
+            }
+            .hero-section {
+                padding: 15px;
+            }
+            .hero-section h4 {
+                font-size: 1.8rem;
+            }
+            .hero-section .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            .warscroll-card {
+                padding: 15px;
+            }
+            .warscroll-card .warscroll-header {
+                font-size: 1.5rem;
+            }
+            .warscroll-card .stat {
+                font-size: 1.1rem;
+            }
+            .warscroll-card .stat span {
+                font-size: 0.7rem;
+            }
+            .warscroll-card th, .warscroll-card td {
+                font-size: 0.85rem;
+                padding: 8px;
+            }
+            .warscroll-card .ability-section h5, .warscroll-card .keyword-section h5 {
+                font-size: 1.2rem;
+            }
+            .warscroll-card .ability-text {
+                font-size: 0.9rem;
+            }
+            .warscroll-card .keywords-list {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 15px;
+                border-width: 5px;
+            }
+            h1 {
+                font-size: 2.8rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            h3 {
+                font-size: 1.5rem;
+            }
+            ul li::before {
+                font-size: 0.8em;
+            }
+            .dialogue {
+                padding: 10px 15px;
+            }
+            .battle-piece.hero-mini {
+                width: 12%;
+                height: 18%;
+            }
+            .battle-piece.unit-card-on-board {
+                width: 15%;
+                height: 22%;
+            }
+            .battle-piece.enemy-mini {
+                width: 12%;
+                height: 18%;
+            }
+            .game-piece.unit-card-on-board {
+                width: 12%;
+                height: 15%;
+                font-size: 0.4em;
+            }
+            .game-piece.unit-card-on-board .unit-name {
+                font-size: 0.6em;
+            }
+            .game-piece.unit-card-on-board .unit-stats {
+                font-size: 0.5em;
+            }
+            .gameboard-visual {
+                padding-bottom: 120%; /* More vertical space for very small screens */
+            }
+            .game-piece {
+                width: 9%;
+                height: 11.25%;
+            }
+            .active-card-on-board {
+                width: 10%;
+                height: 12.5%;
+            }
+            .game-zone {
+                width: 100px;
+                height: 140px;
+                font-size: 0.9rem;
+            }
+            .hero-section {
+                padding: 10px;
+            }
+            .hero-section h4 {
+                font-size: 1.5rem;
+            }
+            .hero-section .hero-subtitle {
+                font-size: 0.9rem;
+            }
+            .warscroll-card {
+                padding: 10px;
+            }
+            .warscroll-card .warscroll-header {
+                font-size: 1.3rem;
+            }
+            .warscroll-card .stat {
+                font-size: 1rem;
+            }
+            .warscroll-card .stat span {
+                font-size: 0.6rem;
+            }
+            .warscroll-card th, .warscroll-card td {
+                font-size: 0.75rem;
+                padding: 6px;
+            }
+            .warscroll-card .ability-section h5, .warscroll-card .keyword-section h5 {
+                font-size: 1.1rem;
+            }
+            .warscroll-card .ability-text {
+                font-size: 0.85rem;
+            }
+            .warscroll-card .keywords-list {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="container p-6 sm:p-8 md:p-10 rounded-xl shadow-lg">
+        <h1>Abbey Dawn: Last Stand</h1>
+        <p class="text-center text-lg mb-6">A Cooperative Campaign Game of Desperate Valor</p>
+
+        <div class="dialogue">
+            "The shadows lengthen, but our resolve shines brighter. For Abbey Dawn, and for Sigmar!"<br>
+            — Lord-Celestant Michael, Hammer of the Dawn
+        </div>
+
+        <div class="section">
+            <h2>Introduction</h2>
+            <p>A gleaming bastion of Order, long unyielding amidst the treacherous realms, now finds its very foundations assailed. The Kingdom of Abbey Dawn, comprising two distinct yet allied strongholds – the <strong>Silverwood Citadel</strong>, a realm of stern warriors and arcane scholars, and the <strong>Emerald Bastion</strong>, a verdant land of agile rangers and nature-aligned defenders – faces an existential threat from the encroaching forces of Chaos and Destruction. Players will control a band of valiant heroes from these kingdoms, working in desperate unity to complete vital quests, defend their hallowed lands, and push back the relentless tide of darkness that threatens to consume all. "Abbey Dawn: Last Stand" is a narrative-driven cooperative campaign, where every victory is hard-won and every defeat carries weight, shaping the destiny of a realm on the brink.</p>
+            <p>This game meticulously weaves the strategic positioning and dice-based combat of Age of Sigmar tabletop battles with the resource management and tactical card play of Age of Sigmar: Champions, forging an unparalleled cooperative experience.</p>
+        </div>
+
+        <div class="section">
+            <h2>Heroes of the Realms: Champions & Harbingers</h2>
+            <p>In "Abbey Dawn: Last Stand," players command powerful heroes drawn from the Grand Alliances of Order, Chaos, Death, and Destruction. Each hero belongs to a specific unit type, granting them unique strengths, abilities, and a personal narrative that unfolds throughout the campaign.</p>
+
+            <h3>Grand Alliance: Order</h3>
+            <p>The forces of Order stand as a bulwark against the encroaching darkness, united in their purpose to defend the Mortal Realms.</p>
+            <ul>
+                <li><strong>Stormcast Eternals:</strong> Sigmar's chosen warriors, descending like lightning to strike down the foes of Order.</li>
+                <li><strong>Aelf:</strong> Agile and cunning warriors, masters of both blade and arcane arts, defending their ancient groves and hidden realms.</li>
+            </ul>
+
+            <h3>Grand Alliance: Chaos</h3>
+            <p>The insidious forces of Chaos seek to corrupt and dominate the realms, driven by the whims of their dark gods. This alliance encompasses the brutal **Daemons of Khorne**, the insidious **Daemons of Tzeentch**, and the zealous **Followers of Chaos**.</p>
+            <ul>
+                <li><strong>Daemons of Khorne:</strong> Brutal, axe-wielding daemons dedicated solely to the Blood God, seeking skulls and bloodshed above all else.</li>
+                <li><strong>Daemons of Tzeentch:</strong> Devious daemons and mutating cultists of the Changer of Ways, twisting reality with arcane horrors.</li>
+                <li><strong>Followers of Chaos:</strong> Mortal champions and cultists devoted to the Ruinous Powers, often leading the daemonic legions. If a unit card has no specific sub-faction unit type (e.g., DAEMON, AELF, GROT) associated with it, it is considered to be a Follower of Chaos unit and to be used with associated heroes.</li>
+            </ul>
+
+            <h3>Grand Alliance: Death</h3>
+            <p>The chilling legions of Death seek to claim all living souls for their undying masters, bringing eternal silence to the realms.</p>
+            <ul>
+                <li><strong>Soulblight:</strong> Ancient, aristocratic vampires and their shambling legions of the undead, seeking to expand their dominion of undeath.</li>
+                <li><strong>Spirit:</strong> Ethereal spirits bound by Nagash's will, a chilling host of vengeful ghosts whose touch brings despair.</li>
+                <li><strong>Mordant:</strong> Twisted yet noble, these bestial warriors fight with primal ferocity, believing themselves to be valiant knights.</li>
+            </ul>
+
+            <h3>Grand Alliance: Destruction</h3>
+            <p>These primal forces seek only to smash, consume, and lay waste to all in their path, leaving ruin in their wake.</p>
+            <ul>
+                <li><strong>Orruk:</strong> Massive, green-skinned brutes who live for nothing more than a good, brutal fight, delivering bone-shattering blows.</li>
+                <li><strong>Grot:</strong> A chittering, cackling horde of grots, ravenous squigs, and lumbering troggoths, overwhelming foes with maddening numbers.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Units of the Realms: Loyal Companions & Hordes</h2>
+            <p>Beyond the might of individual heroes, players can field supporting units to bolster their forces. These units are represented by <span class="keyword">Unit Cards</span>. When a <span class="keyword">Unit Card</span> is played, the card itself is deployed onto the battlefield near the summoning hero, acting as a distinct entity with its own simplified warscroll. These units offer additional tactical options, from holding objectives to providing flanking attacks, and their presence directly supplements the power and strategic options of the hero who brought them forth.</p>
+
+            <h3>Grand Alliance: Order Units</h3>
+            <ul>
+                <li><strong>Stormcast Eternals:</strong> Stalwart warriors like Liberators, forming the unbreakable shield of Sigmar.</li>
+                <li><strong>Aelf:</strong> Agile archers and swift skirmishers, raining down precise volleys or outmaneuvering foes.</li>
+            </ul>
+
+            <h3>Grand Alliance: Chaos Units</h3>
+            <ul>
+                <li><strong>Daemon:</strong> Brutal Bloodletters or gibbering Pink Horrors, direct manifestations of the Ruinous Powers.</li>
+                <li><strong>Follower:</strong> Mortal cultists and warriors, forming the bulk of the Chaos incursions. If a unit card has no specific sub-faction unit type (e.g., DAEMON, AELF, GROT) associated with it, it is considered to be a Follower of Chaos unit and to be used with associated heroes.</li>
+            </ul>
+
+            <h3>Grand Alliance: Death Units</h3>
+            <ul>
+                <li><strong>Soulblight:</strong> Armored Grave Guard or shambling Deadwalker Zombies, forming the legions of the undead.</li>
+                <li><strong>Spirit:</strong> Ethereal Spirit Hosts, passing through obstacles to chill their foes.</li>
+                <li><strong>Mordant:</strong> Ravenous Crypt Ghouls, swarming foes with their numbers.</li>
+                <li><strong>Vampire:</strong> Elite blood-kin, often supplementing Soulblight forces.</li>
+            </ul>
+
+            <h3>Grand Alliance: Destruction Units</h3>
+            <ul>
+                <li><strong>Orruk:</strong> Heavily armored 'Ardboyz, forming a tough core for any Waaagh!</li>
+                <li><strong>Grot:</strong> Lunatic Squig Hoppers or hordes of Moonclan Grots, delivering chaotic charges or overwhelming numbers.</li>
+            </ul>
+
+            <h3>Generic Unit Types</h3>
+            <p>Some unit types are not tied to a specific Grand Alliance and can be included in any hero's deck, provided they do not contradict the hero's primary unit type (e.g., an Aelf hero cannot have a Beast unit card). These represent broader categories of creatures or constructs found across the realms.</p>
+            <ul>
+                <li><strong>Ogor:</strong> Massive, brutish humanoids, often serving as shock troops or heavy hitters.</li>
+                <li><strong>Vehicle:</strong> War machines or chariots, providing speed, ranged attacks, or devastating charges.</li>
+                <li><strong>Beast:</strong> Wild creatures, monsters, or monstrous mounts, offering raw power and unpredictable ferocity.</li>
+            </ul>
+
+            <h3>Champion Units</h3>
+            <p>A special type of <span class="keyword">Unit Card</span>, <span class="keyword">Champion Units</span> represent powerful, named individuals or elite formations that can be deployed by heroes. They function like regular Unit Cards but have additional strategic importance:</p>
+            <ul>
+                <li><strong>Glory Generation:</strong> While a <span class="keyword">Champion Unit</span> is on the battlefield and highlighted (e.g., by being the active unit or by a hero's ability), its controlling player generates 1 additional <span class="keyword">Glory Token</span> at the start of their Hero Phase.</li>
+                <li><strong>Bonus Stats (Conceptual):</strong> Champion Unit cards feature small, colored circles on their bottom corners. A <span class="keyword" style="color: red;">Red Circle</span> indicates bonus Attacks (e.g., a '2' in a red circle adds 2 to its Attacks characteristic). A <span class="keyword" style="color: green;">Green Circle</span> indicates bonus Wounds (e.g., a '3' in a green circle adds 3 to its Wounds characteristic). These values are added to the unit's base profile when deployed.</li>
+                <li><strong>Target for Abilities:</strong> <span class="keyword">Champion Units</span> can be specifically targeted by friendly and enemy abilities, making them focal points of tactical play.</li>
+                <li><strong>Triumphant Defeat (Enemy):</strong> If an enemy <span class="keyword">Champion Unit</span> is destroyed, the player who dealt the final blow immediately gains 2 <span class="keyword">Glory Tokens</span>, rewarding the elimination of a high-value target.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Gameboard & Layouts</h2>
+            <p>The epic battles of Abbey Dawn: Last Stand unfold upon a battlefield measuring **50 inches by 40 inches**. This space allows for diverse tactical engagements, from sprawling open fields to claustrophobic ruins. An ideal game board layout for Abbey Dawn would feature a dynamic mix of terrain elements: central open areas for large engagements, dense forest sections (especially for Sylvaneth scenarios) providing cover and flanking routes, crumbling ruins offering choke points and elevated positions, and vital objectives strategically placed to encourage movement and conflict. Key features like rivers, hills, or blighted ground could further influence tactical decisions, creating a varied and challenging environment for every scenario.</p>
+        </div>
+
+        <div class="section">
+            <h2>Game Components (Conceptual)</h2>
+            <ul>
+                <li><strong>Game Board/Tiles:</strong> Modular tiles representing Abbey Dawn's varied terrain, from the ancient forests to the crumbling citadel walls.</li>
+                <li><strong>Hero Miniatures/Standees:</strong> Exquisitely detailed miniatures or standees representing all heroes listed in the "Heroes of the Realms" section.</li>
+                <li><strong>Enemy Miniatures/Standees:</strong> A diverse array of miniatures or standees representing the various Chaos and Destruction units that plague Abbey Dawn.</li>
+                <li><strong>Hero Decks (Champions TCG style):</strong> Each hero possesses a unique deck of <strong>25-30 cards</strong>, comprising potent Ability, arcane Spell, divine Blessing, and deployable Unit cards, as well as Quest cards.</li>
+                <li><strong>Glory Tokens:</strong> Gleaming tokens representing the vital resource used to fuel heroic actions and card plays.</li>
+                <li><strong>Wound Tokens:</strong> Markers to track the grievous damage sustained by heroes and enemies alike.</li>
+                <li><strong>Dice:</strong> A collection of D6s for resolving the ebb and flow of combat.</li>
+                <li><strong>Scenario Cards/Book:</strong> A detailed compendium outlining the objectives, enemy setup, and unique rules for each mission within the campaign.</li>
+                <li><strong>Quest Cards:</strong> Specific objective cards, drawn from a separate deck, that heroes can undertake to gain bonus <span class="keyword">Glory</span> or other vital rewards.</li>
+                <li><strong>Curse Deck:</strong> A deck of insidious cards drawn by enemies, unleashing negative effects upon heroes or twisting the very fabric of the battlefield.</li>
+            </ul>
+
+            <h3>Optimal Card Pool & Deck Sizes</h3>
+            <p>To ensure balanced gameplay and strategic depth, the following guidelines are recommended for card pool and hero deck sizes:</p>
+            <ul>
+                <li><strong>Hero Deck Size:</strong> Each hero should have a starting deck of <strong>25-30 cards</strong>. This allows for diverse strategies without overwhelming players and accommodates Unit Cards.</li>
+                <li><strong>Card Type Distribution (per Hero Deck):</strong>
+                    <ul>
+                        <li><strong>Ability Cards:</strong> 8-10 cards (utility, buffs, debuffs, movement, combat actions)</li>
+                        <li><strong>Spell Cards (for Wizards/Arcane heroes):</strong> 4-6 cards (magical effects, damage, control)</li>
+                        <li><strong>Blessing Cards:</strong> 1-2 cards (powerful, often single-use, game-changing effects)</li>
+                        <li><strong>Unit Cards:</strong> 3-5 cards (deployable units to supplement the hero)</li>
+                        <li><strong>Quest Cards:</strong> 2-3 cards (scenario-specific objectives or personal quests)</li>
+                    </ul>
+                </li>
+                <li><strong>Draft Card Pool:</strong> The total pool of available cards for drafting (for upgrades or scenario-specific additions) should be approximately <strong>50-75 unique cards</strong> per Grand Alliance, ensuring a wide variety of choices over a campaign. This pool is separate from the heroes' starting decks.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>The Champions' Arsenal: Cards in Play</h2>
+            <p>The heart of Abbey Dawn's defense lies not only in the heroes' might but in the strategic deployment of their unique card decks. These cards, drawing inspiration from the Age of Sigmar: Champions TCG, represent a hero's training, innate abilities, and the blessings they invoke. Each card has a <span class="keyword">Glory</span> cost, representing the effort required to unleash its power.</p>
+
+            <h3>Card Types Explained</h3>
+            <p>Cards in Abbey Dawn: Last Stand function similarly to those in the Age of Sigmar: Champions CCG, providing a range of tactical options:</p>
+            <ul>
+                <li><strong>Ability Cards:</strong> Versatile cards that provide special effects, buffs to allies, debuffs to enemies, or unique actions, including combat actions. Cost: 1 <span class="keyword">Glory Token</span>.</li>
+                <li><strong>Spell Cards:</strong> These cards unleash potent magical effects and can be played by any hero. When a Spell card is played, it is placed on the battlefield. Its effects manifest based on the 'Manifestation Value' in its top-right corner when played in its starting upright position. The card may require rotation prior to the full activation of the spell's effects. Spell cards cost 1 <span class="keyword">Glory Token</span> to cast but may require multiple hero phases to fully manifest unless an ability or rule says otherwise. Casting a Spell card does not trigger refreshing a spell rotation on another card.
+                    <p class="ability-text"><strong>Manifesting Spells:</strong> When a Spell card is played, it is placed on the battlefield. At the start of each subsequent Player Phase, it rotates 45 degrees clockwise. The spell's effects manifest when the card has rotated enough that its Manifestation Value (in its top-right corner) is no longer visible (or reaches zero). Once its effects manifest, the card is then discarded. If a Spell card does not have a Manifestation Value, its effects manifest immediately upon play, and it is then discarded.</p>
+                </li>
+                <li><strong>Blessing Cards:</strong> Rare and powerful, Blessing cards represent divine favor or extraordinary fortune. They usually provide one-time, game-changing effects, such as significant healing or a powerful, un-negatable attack. Cost: <strong>3 <span class="keyword">Glory Tokens</span></strong>.
+                    <ul>
+                        <li><strong>Blessing Limit:</strong> Players may have a maximum of 2 active Blessing cards on the battlefield per objective they currently control.</li>
+                    </ul>
+                </li>
+                <li><strong>Unit Cards:</strong> These cards represent a group of supporting models that can be deployed to the battlefield. When played, the Unit Card itself is placed on the board near the summoning hero, acting as a distinct entity with its own simplified warscroll for movement, combat, and interaction with objectives. To perform actions with a deployed Unit Card (e.g., move, attack), the controlling hero must spend their own <span class="keyword">Glory Tokens</span> (1 Glory per action unless specified). Cost: 1 <span class="keyword">Glory Token</span> (unless it is a Champion Unit).</li>
+                <li><strong>Champion Unit Cards:</strong> A special type of Unit Card representing a powerful individual or elite formation. Costs: <strong>4 <span class="keyword">Glory Tokens</span></strong>.
+                    <p class="ability-text"><strong>Bonus Stats (Conceptual):</strong> Champion Unit cards feature small, colored circles on their bottom corners. A <span class="keyword" style="color: red;">Red Circle</span> indicates bonus Attacks (e.g., a '2' in a red circle adds 2 to its Attacks characteristic). A <span class="keyword" style="color: green;">Green Circle</span> indicates bonus Wounds (e.g., a '3' in a green circle adds 3 to its Wounds characteristic). These values are added to the unit's base profile when deployed.</p>
+                </li>
+                <li>Activated Champion Units (rotated) generate 1 additional <span class="keyword">Glory Token</span> at the start of their controlling hero's Hero Phase.</li>
+            </ul>
+
+            <h4>Active Cards on the Gameboard & Rotation</h4>
+            <p>When a card (Unit, Quest, or a persistent Ability/Spell) is played and remains on the gameboard, it is considered 'active'.</p>
+            <ul>
+                <li>At the start of each Player Phase, all active cards on the battlefield (except Champion Units) rotate 45 degrees clockwise.</li>
+                <li>**Exhaustion:** If an Ability, Spell, or Quest card rotates and the top-right corner of the card has no value, that card is considered exhausted and is discarded.</li>
+                <li>**Unit Card Persistence:** Unit cards (excluding Champion Units) continue to rotate and activate their inherent abilities accordingly, even if their top-right corner has no value. They are not discarded due to rotation unless explicitly stated by another card effect.</li>
+                <li>**Champion Units:** Champion Units do not automatically rotate. Instead, they rotate 45 degrees clockwise only when a specified card (e.g., an Ability or Spell card) is played by their controlling hero that matches a symbol in the top-right corner of the Champion Unit card.</li>
+                <li>**Activated Champion Units:** A Champion Unit that has been rotated from its starting position (i.e., is not in its initial, unrotated state) is considered 'activated'. Activated Champion Units generate 1 additional <span class="keyword">Glory Token</span> at the start of their controlling hero's Hero Phase.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Battlefield Depiction: Heroes & Their Cohorts</h2>
+            <p>On the battlefield, your heroes are represented by their miniatures or standees, while the Unit Cards you deploy are placed as flat cards adjacent to them. This clearly shows the champion and their accompanying cohort, creating a dynamic skirmish line.</p>
+            <div class="battlefield-depiction">
+                <div class="dialogue">
+                    "This ground will be soaked in blood, whether it be yours or ours!"<br>
+                    — Lord of Skulls Francis, The Skull-Reaper
+                    <br><br>
+                    "Then let the heavens tremble, foul beast, for the light of Sigmar shall cleanse this blight!"<br>
+                    — Lord-Celestant Michael, Hammer of the Dawn
+                </div>
+                <p class="mt-4">
+                    The interplay between the hero and their deployed Unit Cards creates a dynamic skirmish experience. Unit Cards can provide additional attacks, hold objectives, block enemy movement, absorb damage, and synergize with hero abilities.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="section">
+            <h2>Core Game Mechanics</h2>
+            <h3>1. Game Turn Structure</h3>
+            <p>Each round of "Abbey Dawn: Last Stand" is a desperate struggle, meticulously divided into two critical phases:</p>
+            <ol>
+                <li><strong>Player Phase:</strong> All valiant heroes activate, their actions chosen by the players in an order determined by their collective strategy.</li>
+                <li><strong>Enemy Phase:</strong> The relentless hordes of darkness surge forth, their every move dictated by the cruel will of the game system.</li>
+            </ol>
+            <p>Players must confer and decide the optimal order in which their heroes will activate during their phase, for timing can be the key to victory.</p>
+
+            <h3>2. Player Phase</h3>
+            <p>During a hero's activation, they perform the following steps in a precise sequence, unleashing their might upon the foes of Abbey Dawn:</p>
+            <h4>Glory Generation</h4>
+            <p>Each hero begins their activation with a unique amount of <span class="keyword">Starting Glory Tokens</span>, as indicated on their warscroll. Additionally, heroes generate a fixed amount of <span class="keyword">Glory Tokens</span> at the start of their activation, also indicated on their warscroll. The ebb and flow of battle can grant additional opportunities for Glory:</p>
+            <ul>
+                <li>At the dawn of their activation, each hero generates their specified <span class="keyword">Glory per Turn</span>.</li>
+                <li><strong>Strategic Objectives:</strong> If a hero or a unit they control starts their activation holding an objective (i.e., they are the only units within 3" of an objective marker), they generate 1 additional <span class="keyword">Glory Token</span>. This rewards tactical positioning and control of vital points.</li>
+                <li><strong>Activated Champion Units:</strong> An 'activated' Champion Unit (one that has been rotated from its initial position) generates 1 additional <span class="keyword">Glory Token</span> at the start of their controlling hero's Hero Phase.</li>
+                <li><strong>Triumphant Defeat:</strong> When a hero or a unit they control defeats an enemy unit (including <span class="keyword">Champion Units</span>) or champion, the controlling player immediately gains 1 additional <span class="keyword">Glory Token</span>. If the defeated unit was an enemy <span class="keyword">Champion Unit</span>, the player gains 2 <span class="keyword">Glory Tokens</span> instead. This fuels further aggression and rewards decisive blows.</li>
+            </ul>
+            <p><strong>Heroic Prowess and Glory:</strong> The varying <span class="keyword">Starting Glory</span> and <span class="keyword">Glory per Turn</span> values on each hero's warscroll are designed to reflect their inherent power and strategic role. More powerful or agile heroes may have abilities that generate Glory in unique ways, or their cards may have lower Glory costs, allowing them to perform more actions or unleash more devastating effects in a single turn. Conversely, more resilient or slower heroes might have higher Glory costs for their powerful actions, emphasizing their deliberate, impactful actions.</p>
+            <h4>Card Play & Actions</h4>
+            <ul>
+                <li>Heroes possess a hand of potent cards, drawn from their unique, character-specific deck.</li>
+                <li>Most cards (Ability, Unit, Spell) cost <strong>1 <span class="keyword">Glory Token</span></strong> to play.</li>
+                <li><span class="keyword">Quest</span> cards cost <strong>2 <span class="keyword">Glory Tokens</span></strong> to play.</li>
+                <li><span class="keyword">Blessing</span> cards cost <strong>3 <span class="keyword">Glory Tokens</span></strong> to play.</li>
+                <li><span class="keyword">Champion Unit</span> cards cost <strong>4 <span class="keyword">Glory Tokens</span></strong> to play.</li>
+                <li>Players may play any number of cards as long as they command sufficient <span class="keyword">Glory</span>.</li>
+                <li>The playing of cards empowers heroes to perform crucial actions: swift movement, devastating attacks, or the invocation of unique abilities.</li>
+                <li><strong>Glory Limit:</strong> A player may spend a maximum of 4 <span class="keyword">Glory Tokens</span> during a single turn. This limit applies to all Glory spent on cards, unit activations, and card management actions.</li>
+            </ul>
+            <h5>Movement</h5>
+            <ul>
+                <li>Each hero possesses a base Movement characteristic. Playing specific <span class="keyword">Ability</span> cards can modify this, allowing for heroic charges or cunning repositioning. Movement is measured from any point on the hero's base to any point on their base.</li>
+                <li class="example"><em>Example: Knight-Questor Kelly plays her 'Swift Charge' <span class="keyword">Ability</span> card (cost 1 <span class="keyword">Glory</span>), granting her additional movement to engage the foe.</em></li>
+            </ul>
+            <h5>Combat (via <span class="keyword">Ability</span> Cards)</h5>
+            <ul>
+                <li>Combat is initiated by playing an <span class="keyword">Ability</span> card (cost 1 <span class="keyword">Glory</span>) that specifies an attack.</li>
+                <li>Each attack specifies its range (Melee or Ranged), number of targets, and combat profile (To Hit, To Wound, Rend, Damage).</li>
+                <li><strong>To Hit:</strong> Roll D6s. Each roll equal to or greater than the target's Defence is a hit.</li>
+                <li><strong>To Wound:</strong> For each hit, roll D6. Each roll equal to or greater than the target's Toughness is a wound.</li>
+                <li><strong>Rend & Damage:</strong> <span class="keyword">Rend</span> reduces the target's Save roll. <span class="keyword">Damage</span> is inflicted for unsaved wounds.</li>
+                <li><strong>Saves (via <span class="keyword">Ability</span> Cards):</strong> When a unit suffers a wound, roll a D6. If the roll is equal to or greater than the unit's Save (after Rend), the wound is negated. Players can play <span class="keyword">Ability</span> cards (cost 1 <span class="keyword">Glory</span>) to modify Saves or negate damage.</li>
+                <li><strong>Wounds:</strong> Unsaved wounds inflict <span class="keyword">Wounds</span>. When a unit's Wounds taken equals or exceeds its maximum Wounds, it is removed from play.</li>
+            </ul>
+            <h5><span class="keyword">Ability</span> Cards</h5>
+            <ul>
+                <li>These versatile cards provide special effects, buffs, debuffs, or unique actions. Cost: 1 <span class="keyword">Glory Token</span>.</li>
+                <li class="example"><em>Example: Spirit-Warden Vicki plays 'Strategic Reposition' (cost 1 <span class="keyword">Glory</span>) to move herself and a nearby ally.</em></li>
+            </ul>
+            <h5><span class="keyword">Spell</span> Cards</h5>
+            <ul>
+                <li>These cards unleash potent magical effects and can be played by any hero. When a Spell card is played, it is placed on the battlefield. Its effects manifest based on the 'Manifestation Value' in its top-right corner when played in its starting upright position. The card may require rotation prior to the full activation of the spell's effects. Spell cards cost 1 <span class="keyword">Glory Token</span> to cast but may require multiple hero phases to fully manifest unless an ability or rule says otherwise. Casting a Spell card does not trigger refreshing a spell rotation on another card.
+                    <p class="ability-text"><strong>Manifesting Spells:</strong> When a Spell card is played, it is placed on the battlefield. At the start of each subsequent Player Phase, it rotates 45 degrees clockwise. The spell's effects manifest when the card has rotated enough that its Manifestation Value (in its top-right corner) is no longer visible (or reaches zero). Once its effects manifest, the card is then discarded. If a Spell card does not have a Manifestation Value, its effects manifest immediately upon play, and it is then discarded.</p>
+                </li>
+                <li class="example"><em>Example: A player plays 'Arcane Shield' (cost 1 <span class="keyword">Glory</span>). This Spell card has a Manifestation Value of '1' in its top-right corner. It is placed on the battlefield. At the start of the next Player Phase, it rotates 45 degrees. Its Manifestation Value is now gone, so its effects manifest: all allied heroes within 6 inches of the casting hero gain a +1 bonus to their Save rolls. The card is then discarded.</em></li>
+            </ul>
+            <h5><span class="keyword">Blessing</span> Cards</h5>
+            <ul>
+                <li>Rare and powerful, Blessing cards provide one-time, game-changing effects. Cost: <strong>3 <span class="keyword">Glory Tokens</span></strong>.</li>
+                <li class="example"><em>Example: Branchwraith Daniel plays 'Nature's Renewal' (cost 3 <span class="keyword">Glory</span>) to heal all allied heroes within range.</em></li>
+            </ul>
+            <h5><span class="keyword">Unit</span> Cards</h5>
+            <ul>
+                <li>Represent supporting models deployed to the battlefield. Playing a <span class="keyword">Unit Card</span> (cost 1 <span class="keyword">Glory</span>, unless Champion Unit) places it on the board near the summoning hero.</li>
+                <li>To perform actions with a deployed Unit Card (move, attack), the controlling hero must spend their own <span class="keyword">Glory Tokens</span> (1 Glory per action unless specified).</li>
+                <li class="example"><em>Example: A player plays a 'Liberator Unit' card (cost 1 <span class="keyword">Glory</span>). Michael spends 1 <span class="keyword">Glory Token</span> to move them and another 1 <span class="keyword">Glory Token</span> for their attack.</em></li>
+            </ul>
+            <h5><span class="keyword">Champion Unit</span> Cards</h5>
+            <ul>
+                <li>Special Unit Cards representing powerful individuals. Cost: <strong>4 <span class="keyword">Glory Tokens</span></strong>.</li>
+                <li>Activated Champion Units (rotated) generate 1 additional <span class="keyword">Glory Token</span> at the start of their controlling hero's Hero Phase.</li>
+            </ul>
+            <h5><span class="keyword">Quest</span> Cards</h5>
+            <ul>
+                <li>Specific objectives played from hand. Placed on the board when played. Cost: <strong>2 <span class="keyword">Glory Tokens</span></strong>.</li>
+                <li>When completed, a Quest card rotates 90 degrees clockwise. Once rotated 360 degrees, it is discarded. Certain abilities or spells may cause Quest cards to rotate.</li>
+                <li class="example"><em>Example: A 'Secure the Old Mill' Quest card requires a hero to end their activation within 3 inches of the objective for two consecutive turns. Upon completion, it rotates.</em></li>
+            </ul>
+            <h5>Reactive Card Play</h5>
+            <ul>
+                <li>Certain cards can be played outside your hero's normal activation in response to specific triggers. Cost: Normal Glory cost (1, 2, 3, or 4 Glory).</li>
+                <li class="example"><em>Example: An enemy attacks Kelly. Arion plays 'Azyrite Shield' (cost 1 <span class="keyword">Glory</span>, Reactive) to grant Kelly a +1 Save bonus.</em></li>
+            </ul>
+            <h5>Glory for Card Management</h5>
+            <p>Unspent <span class="keyword">Glory Tokens</span> can be used to manipulate your hand and deck:</p>
+            <ul>
+                <li><strong>Draw Cards:</strong> Spend 1 <span class="keyword">Glory Token</span> to draw 2 cards.</li>
+                <li><strong>Shuffle Hand:</strong> Spend 2 <span class="keyword">Glory Tokens</span> to shuffle your hand into your deck and draw new cards.</li>
+                <li><strong>Replenish Glory:</strong> Discard 2 cards to gain 1 <span class="keyword">Glory Token</span> (once per activation).</li>
+            </ul>
+            <h4>End of Activation</h4>
+            <p>Once a hero concludes their actions, their activation ends. Players then choose the next hero to activate.</p>
+
+            <h3>3. Enemy Phase</h3>
+            <p>After all heroes and their deployed units have activated, enemies surge forth:</p>
+            <ol>
+                <li><strong>Movement:</strong> Each enemy moves towards the nearest visible hero or deployed Unit Card. If none are visible, they advance towards the nearest objective.</li>
+                <li><strong>Attack:</b> If an enemy is in range, it attacks. Enemies have a fixed combat profile. Targeted heroes/units roll Saves as normal.</li>
+                <li><strong><span class="keyword">Curse</span> Cards (Optional):</strong> In certain scenarios, players may draw a <span class="keyword">Curse</span> card from the <span class="keyword">Curse</span> deck, unleashing negative effects.</li>
+            </ol>
+        </div>
+
+        <div class="dialogue">
+            "Every spell cast is a prayer answered, a shield raised against the encroaching darkness. Let the light of Azyr guide my hand!"<br>
+            — Knight-Incantor Helo, Voice of the Azyrite Storm
+        </div>
+
+        <div class="section">
+            <h2>Keywords Index</h2>
+            <p>The Age of Sigmar: Champions TCG, upon which this game's card mechanics are inspired, utilizes a variety of keywords that grant special rules or effects. Familiarize yourself with these vital terms:</p>
+            <ul>
+                <li><span class="keyword"><strong>Allegiance:</strong></span> The primary faction a hero belongs to (e.g., Stormcast Eternals, Khorne Bloodbound), determining card access and synergistic effects.</li>
+                <li><span class="keyword"><strong>Arcane:</strong></span> Denotes a Spell card or an effect related to magical energies.</li>
+                <li><span class="keyword"><strong>Glory:</strong></span> The primary resource generated by heroes each turn, used to pay for cards and activate abilities.</li>
+                <li><span class="keyword"><strong>Blessing:</strong></span> A powerful, often one-time, beneficial effect, typically with a higher Glory cost.</li>
+                <li><span class="keyword"><strong>Bulwark:</strong></span> Grants a bonus to Save rolls, representing strong defensive positioning or armour.</li>
+                <li><span class="keyword"><strong>Champion Unit:</strong></span> A special type of Unit Card representing a powerful individual or elite formation, with unique Glory generation and defeat rewards.</li>
+                <li><span class="keyword"><strong>Cleave:</strong></span> An Attack effect that allows a single attack to potentially hit multiple adjacent targets.</li>
+                <li><span class="keyword"><strong>Curse:</strong></span> A negative effect applied to a hero or the battlefield, usually drawn from the Curse deck by enemies.</li>
+                <li><span class="keyword"><strong>Damage:</strong></span> The amount of Wounds inflicted by a successful attack after Saves are resolved.</li>
+                <li><span class="keyword"><strong>Defence:</strong></span> A hero's characteristic or a card effect that helps to negate incoming Wounds.</li>
+                <li><span class="keyword"><strong>Divine:</strong></span> An effect or card that draws upon celestial or holy power, often associated with healing or protection.</li>
+                <li><span class="keyword"><strong>Fury:</strong></span> An Attack effect that grants additional attacks or damage under specific conditions, often when charging or against weakened foes.</li>
+                <li><span class="keyword"><strong>Guard:</strong></span> A Defence effect that allows a hero to protect an adjacent allied unit, taking the hit instead.</li>
+                <li><span class="keyword"><strong>Heal:</strong></span> Restores Wounds to a unit.</li>
+                <li><span class="keyword"><strong>Inspire:</strong></span> Provides a bonus to nearby allied units, often to their To Hit, To Wound, or Defence characteristics.</li>
+                <li><span class="keyword"><strong>Melee:</strong></span> An attack or ability that can only target units in base contact or within a very short range (e.g., 1 inch).</li>
+                <li><span class="keyword"><strong>Mortal Wound:</strong></span> A special type of Wound that cannot be saved by normal Save rolls, only by specific abilities or effects.</li>
+                <li><span class="keyword"><strong>Pierce:</span> An Attack effect that ignores a certain amount of the target's Save characteristic (similar to Rend, but a keyword for clarity).</li>
+                <li><span class="keyword"><strong>Quest:</strong></span> A specific objective card that, when successfully completed, grants rewards or progresses the narrative.</li>
+                <li><span class="keyword"><strong>Ranged:</strong></span> An attack or ability that can target units at a distance, specified by a range value (e.g., 12 inches).</li>
+                <li><span class="keyword"><strong>Relocate:</strong></span> An ability that allows a unit to immediately move a short distance without counting as a full movement action.</li>
+                <li><span class="keyword"><strong>Rend:</strong></span> Reduces the target's Save roll by a specified amount (e.g., Rend -1 means a 4+ Save becomes a 5+ Save).</li>
+                <li><span class="keyword"><strong>Revive:</strong></span> An effect that returns a defeated unit to play, often with a limited number of Wounds.</li>
+                <li><span class="keyword"><strong>Swift:</strong></span> Grants bonus movement or allows for movement outside of the normal movement phase.</li>
+                <li><span class="keyword"><strong>Tactical:</strong></span> An ability that involves strategic positioning or manipulation of units on the battlefield.</li>
+                <li><span class="keyword"><strong>Wound:</strong></span> A unit's health point. When a unit's Wounds taken equals or exceeds its maximum Wounds, it is defeated.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Example Game Round: The Skirmish at the Blighted Crossroads</h2>
+            <p>Observe a conceptual example of a single game round unfolding on the 50x40 inch gameboard. This illustrates the dynamic interplay between heroes, enemies, terrain, and the crucial card mechanics, alongside the designated areas for decks and discards.</p>
+            <div class="game-in-play-example">
+                <h3 class="text-center">The Crossroads Ambush</h3>
+                <p class="text-center italic text-sm text-gray-400 mb-4">A desperate fight to clear a vital strategic crossroads.</p>
+                <div class="gameboard-visual">
+                    <div class="gameboard-visual-inner"></div> <!-- For grid effect -->
+
+                    <!-- Terrain elements (relative to 50x40 board) -->
+                    <div class="terrain forest" style="top: 5%; left: 5%; width: 30%; height: 35%;"></div>
+                    <div class="terrain ruin" style="top: 60%; left: 10%; width: 25%; height: 20%;"></div>
+                    <div class="terrain objective" style="top: 45%; left: 45%; width: 10%; height: 12.5%;"></div>
+                    <div class="terrain void" style="top: 0%; left: 40%; width: 18%; height: 10%;">Enemy Discard</div>
+                    <div class="terrain void" style="top: 0%; left: 60%; width: 18%; height: 10%;">Enemy Deck</div>
+                    <div class="terrain void" style="bottom: 0%; left: 40%; width: 18%; height: 10%;">Hero Discard</div>
+                    <div class="terrain void" style="bottom: 0%; left: 60%; width: 18%; height: 10%;">Hero Deck</div>
+
+                    <!-- Hero placements (relative to 50x40 board) -->
+                    <div class="game-piece hero" style="top: 75%; left: 20%;">M</div> <!-- Michael -->
+                    <div class="game-piece hero" style="top: 70%; left: 28%;">K</div> <!-- Kelly -->
+                    <div class="game-piece hero" style="top: 30%; left: 35%;">L</div> <!-- Lyra (Aelf) -->
+
+                    <!-- Enemy placements (relative to 50x40 board) -->
+                    <div class="game-piece enemy" style="top: 25%; left: 75%;">F</div> <!-- Francis (Khorne) -->
+                    <div class="game-piece enemy" style="top: 35%; left: 68%;">J</div> <!-- Jordan (Tzeentch) -->
+                    <div class="game-piece enemy" style="top: 55%; left: 80%;">S</div> <!-- Stella (Orruk) -->
+                    <div class="game-piece enemy" style="top: 48%; left: 55%;">V</div> <!-- Leone (Soulblight) -->
+
+                    <!-- Unit Card on board -->
+                    <div class="game-piece unit-card-on-board" style="top: 65%; left: 25%;">Liberators</div>
+
+                    <!-- Active Card next to a hero (relative to hero position) -->
+                    <div class="active-card-on-board" style="top: 73%; left: 15%;">Sigmar's Aegis</div>
+                    <div class="active-card-on-board" style="top: 28%; left: 30%;">Runic Ward</div>
+                </div>
+
+                <h4 class="text-center mt-6 mb-4">Round 1: The Initial Clash</h4>
+                <p><strong>Scenario:</strong> The Crossroads Ambush. Heroes (Michael, Kelly, Lyra) must secure the central objective (Crossroads) and defeat the enemy champions (Francis, Jordan, Stella, Leone).</p>
+
+                <p class="font-bold text-emerald-300">PLAYER PHASE</p>
+                <p><strong>1. Glory Generation:</strong> Each hero gains their specified Starting Glory and Glory per Turn.</p>
+
+                <p class="font-bold text-gold-300 mt-4">Lord-Celestant Michael's Activation:</p>
+                <ul>
+                    <li>Michael starts with 3 Glory. He gains 2 Glory per turn. Total Glory: 5.</li>
+                    <li><strong>Action:</strong> Michael plays 'Celestial Strike' (Cost: 1 <span class="keyword">Glory</span>). He moves towards Lord of Skulls Francis and attacks. (Remaining Glory: 4).</li>
+                    <li><strong>Combat:</strong> Michael inflicts a devastating blow on Francis, who now has 2/6 Wounds remaining.
+                        <div class="example">
+                            <em><strong>Detailed Combat Example (Lord-Celestant Michael vs. Lord of Skulls Francis):</strong></em><br>
+                            <em>Lord-Celestant Michael's Tempest Axe: Attacks 3, To Hit 3+, To Wound 3+, Rend -1, Damage 2.</em><br>
+                            <em>Lord of Skulls Francis's Save: 3+. Francis has 6 Wounds.</em><br>
+                            <em>1. <strong>To Hit:</strong> Michael rolls 3 dice (e.g., 2, 4, 5). Two rolls (4, 5) are 3+ or higher. Result: 2 Hits.</em><br>
+                            <em>2. <strong>To Wound:</strong> For the 2 Hits, Michael rolls 2 dice (e.g., 2, 4). One roll (4) is 3+ or higher. Result: 1 Wound.</em><br>
+                            <em>3. <strong>Rend & Save:</strong> Francis's 3+ Save is reduced by Michael's Rend -1, making it a 4+ Save. Francis rolls 1 die (e.g., 3). This is less than 4+, so the Save fails. Result: 1 Unsaved Wound.</em><br>
+                            <em>4. <strong>Damage:</strong> Michael's Tempest Axe has 2 Damage. Francis suffers 2 Wounds.</em><br>
+                            <em>5. <strong>Outcome:</strong> Francis had 6 Wounds. After suffering 2 Wounds, he now has 4 Wounds remaining.</em>
+                        </div>
+                    </li>
+                    <li><strong>Action:</strong> Michael plays 'Sigmar's Aegis' (Cost: 1 <span class="keyword">Glory</span>). This card is placed next to his miniature, granting him +2 Save for the next enemy attack. (Remaining Glory: 3).</li>
+                    <li>Michael's activation ends.</li>
+                </ul>
+
+                <p class="font-bold text-gold-300 mt-4">Knight-Questor Kelly's Activation:</p>
+                <ul>
+                    <li>Kelly starts with 2 Glory. She gains 2 Glory per turn. Total Glory: 4.</li>
+                    <li><strong>Action:</strong> Kelly plays 'Swift Charge' (Cost: 1 <span class="keyword">Glory</span>). She moves to engage Megaboss Stella and attacks. (Remaining Glory: 3).</li>
+                    <li><strong>Combat:</strong> Kelly inflicts 1 Wound on Stella. Stella now has 3/5 Wounds remaining.</li>
+                    <li>Kelly's activation ends.</li>
+                </ul>
+
+                <p class="font-bold text-gold-300 mt-4">Loreweaver Lyra's Activation:</p>
+                <ul>
+                    <li>Lyra starts with 1 Glory. She gains 3 Glory per turn. Total Glory: 4.</li>
+                    <li><strong>Action:</strong> Lyra plays 'Arcane Shield' (Cost: 1 <span class="keyword">Glory</span>). This Spell card has a Manifestation Value of '1' in its top-right corner. It is placed on the battlefield. (Remaining Glory: 3).</li>
+                    <li><strong>Action:</strong> Lyra moves towards the Crossroads Objective. (Remaining Glory: 3).</li>
+                    <li>Lyra's activation ends.</li>
+                </ul>
+                <p class="dialogue">
+                    "Their numbers are vast, but our light is eternal!"<br>
+                    — Lord-Celestant Michael, Hammer of the Dawn
+                </p>
+
+                <p class="font-bold text-red-500 mt-4">ENEMY PHASE</p>
+                <p>Enemies activate based on proximity to heroes.</p>
+
+                <p class="font-bold text-red-500 mt-4">Lord of Skulls Francis's Activation:</p>
+                <ul>
+                    <li><strong>Movement:</strong> Francis moves to remain in melee with Lord-Celestant Michael.</li>
+                    <li><strong>Attack:</strong> Francis attacks Michael. Michael saves the incoming Wound due to 'Sigmar's Aegis'.</li>
+                    <li>Francis's activation ends.</li>
+                </ul>
+
+                <p class="font-bold text-red-500 mt-4">Megaboss Stella's Activation:</p>
+                <ul>
+                    <li><strong>Movement:</strong> Stella moves to remain in melee with Knight-Questor Kelly.</li>
+                    <li><strong>Attack:</strong> Stella attacks Kelly. Kelly saves the incoming Wound.</li>
+                    <li>Stella's activation ends.</li>
+                </ul>
+
+                <p class="font-bold text-red-500 mt-4">Magister Jordan's Activation:</p>
+                <ul>
+                    <li><strong>Movement:</strong> Jordan moves towards Loreweaver Lyra.</li>
+                    <li><strong>Attack:</strong> Jordan uses Arcane Bolt (Ranged). Lyra takes 1 <span class="keyword">Mortal Wound</span>. Lyra now has 1/2 Wounds remaining.</li>
+                    <li>Jordan's activation ends.</li>
+                </ul>
+                <p class="dialogue">
+                    "All according to the Great Plan! Fools, they cannot comprehend the threads I weave!"<br>
+                    — Magister Jordan, The Weaver of Fates
+                </p>
+
+                <p class="text-center text-lg italic mt-6">End of Round 1. The battle rages on!</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Warscrolls: Champions & Harbingers</h2>
+            <p>Each hero and champion in Abbey Dawn: Last Stand is represented by a Warscroll, detailing their unique characteristics, weapons, and abilities, crucial for understanding their role on the battlefield. These are simplified for the game, focusing on core mechanics.</p>
+
+            <!-- Order Heroes Warscrolls -->
+            <div class="hero-section">
+                <h4>Lord-Celestant Michael</h4>
+                <p class="hero-subtitle">Hammer of the Dawn (Stormcast Eternal)</p>
+                <p class="hero-story">A venerable Lord-Celestant, his presence on the battlefield is a rallying cry for all. Wielding a mighty Tempest Axe, his leadership and strategic acumen are as sharp as his blade, inspiring celestial might in those who fight alongside him.</p>
+                <p class="hero-story"><strong>Sub-story: "The Reforged Aegis"</strong> - Lord-Celestant Michael must lead a perilous incursion to reclaim and reforge a corrupted celestial relic, purifying it with Azyrite lightning. <span class="keyword">Objective: Defeat a powerful enemy Champion Unit.</span> Success grants Lord-Celestant Michael a permanent +1 Defence bonus, reflecting the renewed strength of his celestial armour.</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">5"<span>Move</span></div>
+                        <div class="stat">3+<span>Save</span></div>
+                        <div class="stat">12<span>Wounds</span></div>
+                        <div class="stat">9<span>Bravery</span></div>
+                        <div class="stat">3<span>Starting Glory</span></div>
+                        <div class="stat">2<span>Glory per Turn</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Tempest Axe</td><td>Melee</td><td>3</td><td>3+</td><td>3+</td><td>-1</td><td>2</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Inspiring Presence:</strong> Add 1 to the Bravery characteristic of friendly units within 6" of this model.</p>
+                        <h5>Starting Bonus</h5>
+                        <p class="ability-text"><strong>Vanguard Deployment:</strong> Start the scenario with a 'Liberator Unit' card already deployed on the battlefield within 3" of this model.</p>
+                        <h5>Once Per Scenario Ability</h5>
+                        <p class="ability-text"><strong>Azyrite Rebirth:</strong> Once per scenario, when a friendly STORMCAST ETERNAL unit within 6" of this model is destroyed, you may immediately return it to the battlefield within 3" of Michael with 1 Wound remaining.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">ORDER, HERO, STORMCAST ETERNAL, MICHAEL</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Knight-Questor Kelly</h4>
+                <p class="hero-subtitle">The Unyielding Star (Stormcast Eternal)</p>
+                <p class="hero-story">A fierce Knight-Questor, her devotion to Sigmar is absolute, matched only by her devastating charges. Her Star-Forged Blade cuts through enemy ranks with divine fury, each strike echoing the thunderous might of Azyr.</p>
+                <p class="hero-story"><strong>Sub-story: "Trial by Storm"</strong> - Knight-Questor Kelly feels the whispers of her previous life fading, a common affliction of the Reforged. To reaffirm her spirit and connection to Sigmar, she must prove her unwavering faith. <span class="keyword">Objective: Single-handedly defeat 3 enemy units in a single turn.</span> Defeating these foes unlocks a powerful new 'Celestial Retribution' Ability card for Kelly's deck, allowing her to unleash devastating counter-attacks imbued with divine energy.</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">5"<span>Move</span></div>
+                        <div class="stat">3+<span>Save</span></div>
+                        <div class="stat">10<span>Wounds</span></div>
+                        <div class="stat">8<span>Bravery</span></div>
+                        <div class="stat">2<span>Starting Glory</span></div>
+                        <div class="stat">2<span>Glory per Turn</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Star-Forged Blade</td><td>Melee</td><td>4</td><td>3+</td><td>3+</td><td>-2</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Righteous Charge:</strong> Add 1 to the Attacks characteristic of this model's melee weapons when it makes a charge move in the same turn.</p>
+                        <h5>Starting Bonus</h5>
+                        <p class="ability-text"><strong>Swift Advance:</strong> This model's first movement action in the scenario gains an additional 3" of movement.</p>
+                        <h5>Once Per Scenario Ability</h5>
+                        <p class="ability-text"><strong>Unwavering Charge:</strong> Once per scenario, at the start of your activation, this model can make a charge move of up to 8" and immediately make a melee attack with +1 Damage, even if she already moved or attacked this turn.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">ORDER, HERO, STORMCAST ETERNAL, KELLY</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Loreweaver Lyra</h4>
+                <p class="hero-subtitle">Seeker of Lost Runes (Aelf)</p>
+                <p class="hero-story">A sagacious Aelf Loreweaver, Lyra dedicates her life to uncovering and preserving ancient knowledge. Her mastery of arcane runes allows her to weave intricate spells of protection and insight, guiding her allies through the most treacherous of paths.</p>
+                <p class="hero-story"><strong>Sub-story: "The Runic Revival"</strong> - Lyra must recover ancient Aelven runes from a corrupted library, deciphering their secrets while fending off Tzeentchian horrors. <span class="keyword">Objective: Successfully cast 3 Spell cards in a single turn, or control two objectives at the end of your turn.</span> Success grants her a new 'Runic Ward' Spell card, providing a powerful defensive buff to nearby allies.</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">6"<span>Move</span></div>
+                        <div class="stat">5+<span>Save</span></div>
+                        <div class="stat">8<span>Wounds</span></div>
+                        <div class="stat">8<span>Bravery</span></div>
+                        <div class="stat">1<span>Starting Glory</span></div>
+                        <div class="stat">3<span>Glory per Turn</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Runesmith's Staff</td><td>Melee</td><td>1</td><td>4+</td><td>4+</td><td>-</td><td>1</td></tr>
+                            <tr><td>Arcane Bolt</td><td>12"</td><td>1</td><td>4+</td><td>4+</td><td>-</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Arcane Insight:</strong> Once per turn, you can re-roll one casting roll made by this model.</p>
+                        <p class="ability-text"><strong>Protective Runes:</strong> Add 1 to the Save characteristic of friendly AELF units within 6" of this model.</p>
+                        <p class="ability-text"><strong>Arcane Bolt (Ranged):</strong> This attack can only be used every other turn.</p>
+                        <h5>Starting Bonus</h5>
+                        <p class="ability-text"><strong>Pre-Cognitive Glimpse:</strong> Draw 1 additional card at the start of the first Player Phase.</p>
+                        <h5>Once Per Scenario Ability</h5>
+                        <p class="ability-text"><strong>Runic Overcharge:</strong> Once per scenario, when Lyra casts a Spell, she can choose to overcharge it. The spell's effects are doubled (e.g., double damage, double healing, double duration).</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">ORDER, HERO, WIZARD, AELF, LYRA</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Shadowblade Kaelen</h4>
+                <p class="hero-subtitle">Silent Hunter of the Deepwood (Aelf)</p>
+                <p class="hero-story">A swift and deadly Aelf assassin, Kaelen moves like a ghost through the battlefield, striking from the shadows with unparalleled precision. Her twin blades are a blur of motion, silencing foes before they can even raise an alarm.</p>
+                <p class="hero-story"><strong>Sub-story: "The Unseen Strike"</strong> - Kaelen must eliminate a key enemy scout leader before they reveal Abbey Dawn's hidden paths to the encroaching hordes. <span class="keyword">Objective: Move a total of 15 inches and defeat an enemy unit in the same turn.</span> Success grants Kaelen a permanent +1 to her 'To Hit' rolls with her melee weapons.</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">7"<span>Move</span></div>
+                        <div class="stat">5+<span>Save</span></div>
+                        <div class="stat">8<span>Wounds</span></div>
+                        <div class="stat">7<span>Bravery</span></div>
+                        <div class="stat">2<span>Starting Glory</span></div>
+                        <div class="stat">3<span>Glory per Turn</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Twin Shadowblades</td><td>Melee</td><td>5</td><td>3+</td><td>4+</td><td>-1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Fleet-Footed:</strong> This model can run and still charge in the same turn.</p>
+                        <p class="ability-text"><strong>Precision Strike:</b> Improve the Rend characteristic of this model's melee weapons by 1 if targeting a unit with 1 or 2 Wounds remaining.</p>
+                        <h5>Starting Bonus</h5>
+                        <p class="ability-text"><strong>First Strike:</strong> For this model's first attack action in the scenario, add 1 to the To Hit roll.</p>
+                        <h5>Once Per Scenario Ability</h5>
+                        <p class="ability-text"><strong>Vanishing Strike:</strong> Once per scenario, after Kaelen makes a successful melee attack that destroys an enemy unit, she can immediately move up to 6" without triggering any enemy reactive abilities.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">ORDER, HERO, AELF, KAELEN</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Lord-Arcanum Arion</h4>
+                <p class="hero-subtitle">Bearer of the Celestial Staff (Stormcast Eternal)</p>
+                <p class="hero-story">A wise and powerful Lord-Arcanum, Arion channels the raw power of Azyr to smite foes and mend the spirits of his allies. His celestial staff crackles with divine energy, guiding the Stormcast to victory.</p>
+                <p class="hero-story"><strong>Sub-story: "The Azyrite Conflux"</strong> - Arion must establish a celestial conflux at a vital ley line node to empower Abbey Dawn's defenses. <span class="keyword">Objective: Successfully cast 2 Spell cards that heal or buff allied units in a single turn.</span> Success grants Arion a new 'Azyrite Shield' Spell card, which can negate a single incoming Mortal Wound.</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">5"<span>Move</span></div>
+                        <div class="stat">4+<span>Save</span></div>
+                        <div class="stat">10<span>Wounds</span></div>
+                        <div class="stat">9<span>Bravery</span></div>
+                        <div class="stat">1<span>Starting Glory</span></div>
+                        <div class="stat">3<span>Glory per Turn</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Celestial Staff</td><td>Melee</td><td>2</td><td>4+</td><td>4+</td><td>-</td><td>1</td></tr>
+                            <tr><td>Arcane Bolt</td><td>12"</td><td>1</td><td>4+</td><td>4+</td><td>-</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Soul-Heal:</strong> In your hero phase, you can heal 1 Wound from a friendly STORMCAST ETERNAL unit within 6" of this model.</p>
+                        <p class="ability-text"><strong>Arcane Conduit:</strong> Add 1 to casting rolls for friendly WIZARD units within 9" of this model.</p>
+                        <p class="ability-text"><strong>Arcane Bolt (Ranged):</strong> This attack can only be used every other turn.</p>
+                        <h5>Starting Bonus</h5>
+                        <p class="ability-text"><strong>Azyrite Blessing:</strong> At the start of the first Player Phase, you may immediately heal 1 Wound from any friendly unit on the battlefield.</p>
+                        <h5>Once Per Scenario Ability</h5>
+                        <p class="ability-text"><strong>Celestial Intervention:</strong> Once per scenario, at the start of any Player Phase, Arion can choose one friendly unit anywhere on the battlefield. That unit immediately heals all its Wounds and gains a 4+ invulnerable save against all damage until the end of the current phase.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">ORDER, HERO, WIZARD, STORMCAST ETERNAL, ARION</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Sylvaneth Branchwych Elara</h4>
+                <p class="hero-subtitle">Voice of the Emerald Bastion (Aelf)</p>
+                <p class="hero-story">Elara is a fierce defender of the Emerald Bastion, her spirit deeply intertwined with the ancient forests. She commands the wrath of the woods, summoning thorny vines and guiding her Aelf kin through hidden paths.</p>
+                <p class="hero-story"><strong>Sub-story: "The Verdant Awakening"</strong> - Elara must awaken a slumbering ancient treelord within a blighted grove to aid Abbey Dawn. <span class="keyword">Objective: Control a terrain feature and successfully cast a Spell card in the same turn.</span> Success grants Elara a new 'Thornwall' Spell card, allowing her to create impassable terrain.</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">6"<span>Move</span></div>
+                        <div class="stat">5+<span>Save</span></div>
+                        <div class="stat">8<span>Wounds</span></div>
+                        <div class="stat">8<span>Bravery</span></div>
+                        <div class="stat">1<span>Starting Glory</span></div>
+                        <div class="stat">3<span>Glory per Turn</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Branch Staff</td><td>Melee</td><td>1</td><td>4+</td><td>4+</td><td>-</td><td>1</td></tr>
+                            <tr><td>Arcane Bolt</td><td>12"</td><td>1</td><td>4+</td><td>4+</td><td>-</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Forest Spirit:</strong> This model can move through terrain features as if they were not there.</p>
+                        <p class="ability-text"><strong>Nature's Wrath:</strong> Once per turn, you can re-roll a single To Wound roll for a friendly AELF unit within 6" of this model.</p>
+                        <p class="ability-text"><strong>Arcane Bolt (Ranged):</strong> This attack can only be used every other turn.</p>
+                        <h5>Starting Bonus</h5>
+                        <p class="ability-text"><strong>Rooted Defense:</strong> If this model starts the scenario within 3" of a Forest terrain feature, you may immediately place a 'Thornwall' (impassable terrain, 3" long) adjacent to this model.</p>
+                        <h5>Once Per Scenario Ability</h5>
+                        <p class="ability-text"><strong>Verdant Embrace:</strong> Once per scenario, at the start of your activation, you may immediately deploy a 'Dryad Unit' (if Dryads are a defined unit, otherwise a generic 'Forest Spirit Unit') within 6" of Elara. This unit is treated as having full Wounds.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">ORDER, HERO, WIZARD, AELF, ELARA</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Lord-Relictor Thomas</h4>
+                <p class="hero-subtitle">Voice of the Departed (Stormcast Eternal)</p>
+                <p class="hero-story">A solemn Lord-Relictor, Thomas carries the weight of countless fallen Stormcast souls, channeling their essence to mend the living and smite the unholy. His reliquary staff glows with the light of Azyr, a beacon of hope against the encroaching despair.</p>
+                <p class="hero-story"><strong>Sub-story: "The Hallowed Ground"</strong> - Thomas must consecrate a blighted burial ground, cleansing it of lingering corruption and allowing the spirits of the fallen to rest. <span class="keyword">Objective: Heal a total of 3 Wounds from allied units and inflict 1 Mortal Wound on an enemy unit in the same turn.</span> Success grants Thomas a new 'Hallowed Ground' Blessing card, which can heal all friendly units within a large radius.</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">5"<span>Move</span></div>
+                        <div class="stat">3+<span>Save</span></div>
+                        <div class="stat">12<span>Wounds</span></div>
+                        <div class="stat">9<span>Bravery</span></div>
+                        <div class="stat">2<span>Starting Glory</span></div>
+                        <div class="stat">2<span>Glory per Turn</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Reliquary Staff</td><td>Melee</td><td>2</td><td>4+</td><td>4+</td><td>-</td><td>1</td></tr>
+                            <tr><td>Arcane Bolt</td><td>12"</td><td>1</td><td>4+</td><td>4+</td><td>-</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Healing Aura:</strong> In your hero phase, you can heal 1 Wound from any friendly unit within 6" of this model.</p>
+                        <p class="ability-text"><strong>Soul-Smite (Spell):</strong> Inflict 1 Mortal Wound on an enemy unit within 12".</p>
+                        <p class="ability-text"><strong>Arcane Bolt (Ranged):</b> This attack can only be used every other turn.</p>
+                        <h5>Starting Bonus</h5>
+                        <p class="ability-text"><strong>Divine Favor:</strong> At the start of the first Player Phase, gain 1 additional Glory Token.</p>
+                        <h5>Once Per Scenario Ability</h5>
+                        <p class="ability-text"><strong>Soul's Retribution:</strong> Once per scenario, when a friendly STORMCAST ETERNAL unit within 9" of Thomas is destroyed, Thomas can immediately inflict 2 Mortal Wounds on the enemy unit that destroyed it.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">ORDER, HERO, WIZARD, STORMCAST ETERNAL, THOMAS</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <h3>Grand Alliance: Chaos</h3>
+            <p>The insidious forces of Chaos seek to corrupt and dominate the realms, driven by the whims of their dark gods.</p>
+
+            <div class="hero-section">
+                <h4>Lord of Skulls Francis</h4>
+                <p class="hero-subtitle">The Skull-Reaper (Followers of Chaos - Khorne)</p>
+                <p class="hero-story">A towering figure of muscle and rage, his Goreaxe constantly dripping with the blood of the fallen. Francis is a living engine of destruction, driven by an insatiable thirst for skulls to offer to his dark god.</p>
+                <p class="hero-story"><strong>Sub-story: "The Endless Carnage"</strong> - Lord of Skulls Francis seeks to prove his devotion to Khorne by orchestrating a slaughter so vast it will echo through the realms. <span class="keyword">Objective: Defeat 3 enemy units in a single turn.</span> Success grants Francis a permanent +1 Attack bonus, reflecting Khorne's favor.</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">5"<span>Move</span></div>
+                        <div class="stat">3+<span>Save</span></div>
+                        <div class="stat">12<span>Wounds</span></div>
+                        <div class="stat">8<span>Bravery</span></div>
+                        <div class="stat">3<span>Starting Glory</span></div>
+                        <div class="stat">1<span>Glory per Turn</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Goreaxe</td><td>Melee</td><td>4</td><td>3+</td><td>3+</td><td>-2</td><td>2</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Blood for the Blood God!:</strong> After this model defeats an enemy unit, gain 1 additional Glory token.</p>
+                        <h5>Starting Bonus</h5>
+                        <p class="ability-text"><strong>First Blood:</strong> This model's first melee attack action in the scenario gains an additional 1 Attack characteristic.</p>
+                        <h5>Once Per Scenario Ability</h5>
+                        <p class="ability-text"><strong>Khorne's Fury:</strong> Once per scenario, at the start of your activation, Francis gains +2 Attacks and +1 Damage with his Goreaxe until the end of the turn.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">CHAOS, HERO, KHORNE, FOLLOWER, FRANCIS</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Magister Jordan</h4>
+                <p class="hero-subtitle">The Weaver of Fates (Followers of Chaos - Tzeentch)</p>
+                <p class="hero-story">A cunning and insidious Magister, his mind a labyrinth of plots and arcane secrets. Jordan wields crackling Warp-fire, unleashes vile mutations, and commands legions of gibbering Horrors with his insidious sorcery.</p>
+                <p class="hero-story"><strong>Sub-story: "The Grand Deception"</strong> - Magister Jordan seeks to unravel the Order's plans by infiltrating a key communication hub and replacing their dispatches with Tzeentchian lies. <span class="keyword">Objective: Successfully cast 2 Spell cards that target enemy units with negative effects in a single turn.</span> Success grants Jordan a new 'Whispers of Change' Spell card, allowing him to force an enemy unit to re-roll a successful Save.</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">5"<span>Move</span></div>
+                        <div class="stat">5+<span>Save</span></div>
+                        <div class="stat">8<span>Wounds</span></div>
+                        <div class="stat">7<span>Bravery</span></div>
+                        <div class="stat">1<span>Starting Glory</span></div>
+                        <div class="stat">3<span>Glory per Turn</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Staff of Change</td><td>Melee</td><td>1</td><td>4+</td><td>4+</td><td>-</td><td>1</td></tr>
+                            <tr><td>Arcane Bolt</td><td>12"</td><td>1</td><td>4+</td><td>4+</td><td>-</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Arcane Manipulation:</strong> Once per turn, you can re-roll one casting roll made by this model.</p>
+                        <p class="ability-text"><strong>Arcane Bolt (Ranged):</strong> This attack can only be used every other turn.</p>
+                        <h5>Starting Bonus</h5>
+                        <p class="ability-text"><strong>Twist of Fate:</strong> At the start of the first Player Phase, choose one enemy unit within 9" of this model; that unit suffers -1 to its next Save roll.</p>
+                        <h5>Once Per Scenario Ability</h5>
+                        <p class="ability-text"><strong>Reality Warp:</strong> Once per scenario, at the start of the Enemy Phase, choose one enemy unit within 12" of Jordan. That unit cannot move or attack during this Enemy Phase.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">CHAOS, HERO, WIZARD, TZEENTCH, FOLLOWER, JORDAN</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Gaunt Summoner Xy'lar</h4>
+                <p class="hero-subtitle">The Architect of Change (Daemons of Tzeentch)</p>
+                <p class="hero-story">A master of summoning and arcane manipulation, Xy'lar can tear open reality to unleash daemonic horrors upon the battlefield, twisting the tides of war with a flick of his wrist.</p>
+                <p class="hero-story"><strong>Sub-story: "The Shifting Labyrinth"</strong> - Gaunt Summoner Xy'lar aims to permanently warp a section of Abbey Dawn's territory into a Tzeentchian labyrinth, hindering Order's movements. <span class="keyword">Objective: Summon a unit and successfully cast a Spell card in the same turn.</span> Success grants Xy'lar a permanent +1 to his Casting rolls.</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">5"<span>Move</span></div>
+                        <div class="stat">5+<span>Save</span></div>
+                        <div class="stat">10<span>Wounds</span></div>
+                        <div class="stat">8<span>Bravery</span></div>
+                        <div class="stat">1<span>Starting Glory</span></div>
+                        <div class="stat">3<span>Glory per Turn</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Warptome</td><td>Melee</td><td>1</td><td>4+</td><td>4+</td><td>-</td><td>1</td></tr>
+                            <tr><td>Arcane Bolt</td><td>12"</td><td>1</td><td>4+</td><td>4+</td></td><td>-</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Locus of Change:</strong> When this model attempts to cast a spell, you can add 1 to the casting roll.</p>
+                        <p class="ability-text"><strong>Summon Daemons:</strong> Once per game, in your hero phase, you can summon a unit of 3 Horrors of Tzeentch within 9" of this model.</p>
+                        <p class="ability-text"><strong>Arcane Bolt (Ranged):</strong> This attack can only be used every other turn.</p>
+                        <h5>Starting Bonus</h5>
+                        <p class="ability-text"><strong>Daemonic Incursion:</strong> Start the scenario with a 'Pink Horrors' Unit Card already deployed on the battlefield within 6" of this model.</p>
+                        <h5>Once Per Scenario Ability</h5>
+                        <p class="ability-text"><strong>Grand Summoning:</strong> Once per scenario, at the end of your movement phase, you can summon a 'Flamers of Tzeentch' Unit Card (or a more powerful Tzeentch Daemon Unit if one is defined) within 9" of this model.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">CHAOS, HERO, WIZARD, DAEMON, TZEENTCH, XY'LAR</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Grand Alliance: Death</h3>
+            <p>The chilling legions of Death seek to claim all living souls for their undying masters, bringing eternal silence to the realms.</p>
+
+            <div class="hero-section">
+                <h4>Vampire Lord Leone</h4>
+                <p class="hero-subtitle">Scion of the Crimson Court (Soulblight, Vampire)</p>
+                <p class="hero-story">An ancient, aristocratic vampire, chillingly beautiful yet utterly terrifying. Vampire Lord Leone commands legions of the undead with ancient necromancy and chilling grace, seeking to expand her dominion of undeath.</p>
+                <p class="hero-story"><strong>Sub-story: "The Blood Tithe"</strong> - Vampire Lord Leone must feast on the lifeblood of powerful foes to replenish her ancient power. <span class="keyword">Objective: Heal 2 Wounds from this model and summon a unit in the same turn.</span> Success grants Leone a permanent +1 Wound characteristic.</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">6"<span>Move</span></div>
+                        <div class="stat">4+<span>Save</span></div>
+                        <div class="stat">10<span>Wounds</span></div>
+                        <div class="stat">9<span>Bravery</span></div>
+                        <div class="stat">2<span>Starting Glory</span></div>
+                        <div class="stat">2<span>Glory per Turn</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Blood-Kissed Blade</td><td>Melee</td><td>3</td><td>3+</td><td>3+</td><td>-1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Call to the Grave:</strong> Once per game, at the end of your movement phase, you can summon a unit of 3 Deadwalker Zombies within 6" of this model.</p>
+                        <p class="ability-text"><strong>Blood Thirst:</strong> On a successful To Wound roll of 6+ with Blood-Kissed Blade, heal 1 Wound from this model.</p>
+                        <h5>Starting Bonus</h5>
+                        <p class="ability-text"><strong>Sustained Bloodlust:</strong> At the start of the first Player Phase, this model immediately heals 1 Wound.</p>
+                        <h5>Once Per Scenario Ability</h5>
+                        <p class="ability-text"><strong>Crimson Feast:</strong> Once per scenario, after Leone makes a successful melee attack that inflicts Wounds, she can immediately heal all Wounds she has suffered.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">DEATH, HERO, VAMPIRE LORD, SOULBLIGHT, VAMPIRE, LEONE</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Ghoul King Vorlag</h4>
+                <p class="hero-subtitle">The Starved Blade of Justice (Mordant)</p>
+                <p class="hero-story">A twisted figure, once a noble knight, now a Ghoul King driven by a primal, insatiable hunger for justice. Vorlag leads his ravenous kin to battle, his monstrous strength and unholy resilience a terrifying sight to the enemies of Order.</p>
+                <p class="hero-story"><strong>Sub-story: "The Feast of Purity"</strong> - Vorlag must consume the essence of a powerful Chaos sorcerer to break a dark curse affecting Abbey Dawn's land. <span class="keyword">Objective: Heal 1 Wound from this model and negate 1 Wound/Mortal Wound in the same turn.</span> Success grants him a permanent +1 Wound characteristic.</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">6"<span>Move</span></div>
+                        <div class="stat">4+<span>Save</span></div>
+                        <div class="stat">14<span>Wounds</span></div>
+                        <div class="stat">8<span>Bravery</span></div>
+                        <div class="stat">3<span>Starting Glory</span></div>
+                        <div class="stat">1<span>Glory per Turn</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Royal Blade</td><td>Melee</td><td>4</td><td>3+</td><td>3+</td><td>-1</td><td>2</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Grand Feast:</strong> After this model makes a successful attack that inflicts Wounds, you can heal 1 Wound from this model.</p>
+                        <p class="ability-text"><strong>Unnatural Vigour:</strong> Roll a D6 each time this model suffers a Wound or Mortal Wound. On a 6+, that Wound or Mortal Wound is negated.</p>
+                        <h5>Starting Bonus</h5>
+                        <p class="ability-text"><strong>Resilient Flesh:</strong> This model starts the scenario with 1 additional Wound (beyond its normal maximum Wounds).</p>
+                        <h5>Once Per Scenario Ability</h5>
+                        <p class="ability-text"><strong>Flesh-Mend:</strong> Once per scenario, at the start of your activation, Vorlag immediately heals all Wounds he has suffered.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">DEATH, HERO, MORDANT, VORLAG</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Knight of Shrouds Morwen</h4>
+                <p class="hero-subtitle">The Spectral Commander (Spirit)</p>
+                <p class="hero-story">A grim and silent Knight of Shrouds, her spectral blade cuts through armor as if it were air. Morwen commands the ethereal legions with chilling efficiency, her presence a harbinger of doom.</p>
+                <p class="hero-story"><strong>Sub-story: "The Echoes of Betrayal"</strong> - Knight of Shrouds Morwen is drawn to a site of ancient betrayal, where Order once fell to treachery. <span class="keyword">Objective: Defeat an enemy unit after moving through terrain or another unit in the same turn.</span> Success grants Morwen a permanent +1 to her To Hit rolls.</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">6"<span>Move</span></div>
+                        <div class="stat">4+<span>Save</span></div>
+                        <div class="stat">10<span>Wounds</span></div>
+                        <div class="stat">10<span>Bravery</span></div>
+                        <div class="stat">2<span>Starting Glory</span></div>
+                        <div class="stat">2<span>Glory per Turn</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Chill Blade</td><td>Melee</td><td>4</td><td>3+</td><td>3+</td><td>-1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Ethereal:</strong> This model ignores modifiers to its Save rolls.</p>
+                        <p class="ability-text"><strong>Spectral Host:</strong> Add 1 to the Attacks characteristic of friendly SPIRIT units within 9" of this model.</p>
+                        <h5>Starting Bonus</h5>
+                        <p class="ability-text"><strong>Haunting Presence:</strong> Start the scenario with a 'Spirit Hosts' Unit Card already deployed on the battlefield within 6" of this model.</p>
+                        <h5>Once Per Scenario Ability</h5>
+                        <p class="ability-text"><strong>Spectral Pursuit:</strong> Once per scenario, after Morwen makes a movement action, she can immediately make a melee attack against an enemy unit she moved past or ended her movement near, even if she already attacked this turn.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">DEATH, HERO, SPIRIT, MORWEN</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Grand Alliance: Destruction</h3>
+            <p>These primal forces seek only to smash, consume, and lay waste to all in their path, leaving ruin in their wake.</p>
+
+            <div class="hero-section">
+                <h4>Megaboss Stella</h4>
+                <p class="hero-subtitle">The Ironclad Tyrant (Orruk)</p>
+                <p class="hero-story">A mountain of green muscle and jagged iron, Megaboss Stella leads her 'Ardboyz with a thunderous 'Waaagh!' and an unshakeable will to smash. Her Grot-Prodder ensures her minions are always in the thick of the fight.</p>
+                <p class="hero-story"><strong>Sub-story: "The Biggest Bash"</strong> - Megaboss Stella seeks the biggest, most satisfying fight. <span class="keyword">Objective: Inflict 4 or more Wounds on enemy units in a single turn.</span> Success grants Stella a permanent +1 Damage to one of her melee weapons.</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">5"<span>Move</span></div>
+                        <div class="stat">3+<span>Save</span></div>
+                        <div class="stat">14<span>Wounds</span></div>
+                        <div class="stat">7<span>Bravery</span></div>
+                        <div class="stat">3<span>Starting Glory</span></div>
+                        <div class="stat">1<span>Glory per Turn</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Boss Choppa</td><td>Melee</td><td>4</td><td>3+</td><td>3+</td><td>-1</td><td>2</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>'Ard as Nails:</strong> Roll a D6 each time this model suffers a Wound or Mortal Wound. On a 5+, that Wound or Mortal Wound is negated.</p>
+                        <h5>Starting Bonus</h5>
+                        <p class="ability-text"><strong>Brutal Onslaught:</strong> For this model's first combat action in the scenario, if she inflicts at least 1 Wound, she immediately gains 1 Glory Token.</p>
+                        <h5>Once Per Scenario Ability</h5>
+                        <p class="ability-text"><strong>Unstoppable Waaagh!:</strong> Once per scenario, at the start of your activation, Stella can make a charge move up to 8" and her melee attacks gain the <span class="keyword">Mortal Wound</span> 1 characteristic (each successful wound roll of 6+ inflicts 1 Mortal Wound in addition to normal damage) for this turn.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">DESTRUCTION, HERO, ORRUK, STELLA</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Warchanter Grak</h4>
+                <p class="hero-subtitle">The Bone-Beat Master (Orruk)</p>
+                <p class="hero-story">A brutish Warchanter, Grak beats a rhythmic, bone-shattering tune that fills his Ironjawz with a primal, unstoppable fury, making them hit harder and move faster.</p>
+                <p class="hero-story"><strong>Sub-story: "The Rhythmic Rampage"</strong> - Warchanter Grak must inspire his boyz to a truly legendary 'Waaagh!' <span class="keyword">Objective: Use 'Waaagh! Chant' to buff an allied unit and have that unit make at least 3 successful attacks in the same turn.</span> Success grants Grak a new 'Waaagh! Chant' Ability card, allowing all friendly ORRUK units within 6" to re-roll failed To Hit rolls for one turn.</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Unit Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">5"<span>Move</span></div>
+                        <div class="stat">4+<span>Save</span></div>
+                        <div class="stat">8<span>Wounds</span></div>
+                        <div class="stat">6<span>Bravery</span></div>
+                        <div class="stat">1<span>Starting Glory</span></div>
+                        <div class="stat">3<span>Glory per Turn</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Grot-Prodder</td><td>Melee</td><td>2</td><td>4+</td><td>4+</td><td>-</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Waaagh! Chant:</strong> In your hero phase, pick a friendly ORRUK unit within 9" of this model. Add 1 to the Attacks characteristic of that unit's melee weapons until your next hero phase.</p>
+                        <h5>Starting Bonus</h5>
+                        <p class="ability-text"><strong>Primal Roar:</strong> At the start of the first Player Phase, choose one friendly ORRUK unit within 9" of this model; that unit gains +1 Attack characteristic for its first melee attack this turn.</p>
+                        <h5>Once Per Scenario Ability</h5>
+                        <p class="ability-text"><strong>Rhythm of War:</strong> Once per scenario, at the start of your activation, all friendly ORRUK units within 9" of Grak immediately gain +1 to their Move characteristic and +1 to their Attacks characteristic for their melee weapons until the end of the turn.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">DESTRUCTION, HERO, ORRUK, WARCHANTER, GRAK</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Moonclan Boss Grok</h4>
+                <p class="hero-subtitle">The Madcap Warlord (Grot)</p>
+                <p class="hero-story">A cunning and utterly insane Moonclan Boss, Grok leads his grots with unpredictable tactics and a terrifying, mushroom-fueled madness, overwhelming foes with sheer numbers and fungal-infused attacks.</p>
+                <p class="hero-story"><strong>Sub-story: "The Great Mushroom Hunt"</strong> - Moonclan Boss Grok seeks a legendary, mind-bending mushroom deep within a dangerous cave system. <span class="keyword">Objective: Move a total of 12 inches and use 'Squig Lure' in the same turn.</span> Success grants Grok a permanent +1 to his Movement characteristic.</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Unit Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">5"<span>Move</span></div>
+                        <div class="stat">6+<span>Save</span></div>
+                        <div class="stat">8<span>Wounds</span></div>
+                        <div class="stat">6<span>Bravery</span></div>
+                        <div class="stat">1<span>Starting Glory</span></div>
+                        <div class="stat">3<span>Glory per Turn</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Moon-axe</td><td>Melee</td><td>3</td><td>4+</td><td>4+</td><td>-</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Squig Lure:</strong> In your movement phase, you can move a friendly SQUIG unit within 9" of this model an additional D6".</p>
+                        <h5>Starting Bonus</h5>
+                        <p class="ability-text"><strong>Madcap Dash:</strong> This model's first movement action in the scenario gains an additional D3" of movement.</p>
+                        <h5>Once Per Scenario Ability</h5>
+                        <p class="ability-text"><strong>Fungal Frenzy:</strong> Once per scenario, at the start of your activation, Grok gains +2 to his Movement characteristic and his melee attacks gain +1 Damage for this turn. This ability also allows him to ignore any movement penalties from terrain this turn.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">DESTRUCTION, HERO, GROT, GROK</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="mt-8">Warscrolls: Supporting Units</h3>
+            <p>These simplified warscrolls represent the basic statistics and abilities of the various Unit Cards that players can deploy.</p>
+
+            <div class="hero-section">
+                <h4>Liberators</h4>
+                <p class="hero-subtitle">Stalwart Shield of Sigmar (Stormcast Eternal Unit)</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Unit Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">4"<span>Move</span></div>
+                        <div class="stat">4+<span>Save</span></div>
+                        <div class="stat">3<span>Wounds</span></div>
+                        <div class="stat">7<span>Bravery</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Warhammer</td><td>Melee</td><td>2</td><td>4+</td><td>4+</td><td>-</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Shieldwall:</strong> Add 1 to Save rolls if this unit did not move in the previous movement phase.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">ORDER, UNIT, STORMCAST ETERNAL</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Aelven Wardens</h4>
+                <p class="hero-subtitle">Guardians of the Glade (Aelf Unit)</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Unit Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">6"<span>Move</span></div>
+                        <div class="stat">5+<span>Save</span></div>
+                        <div class="stat">2<span>Wounds</span></div>
+                        <div class="stat">6<span>Bravery</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Longbow</td><td>18"</td><td>2</td><td>3+</td><td>4+</td><td>-</td><td>1</td></tr>
+                            <tr><td>Elven Blade</td><td>Melee</td><td>1</td><td>4+</td><td>4+</td><td>-</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Swift Shot:</strong> This unit can shoot after moving, but cannot charge.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">ORDER, UNIT, AELF</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Bloodletters</h4>
+                <p class="hero-subtitle">Daemonic Fury (Khorne Daemon Unit)</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Unit Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">5"<span>Move</span></div>
+                        <div class="stat">5+<span>Save</span></div>
+                        <div class="stat">3<span>Wounds</span></div>
+                        <div class="stat">8<span>Bravery</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Hellblade</td><td>Melee</td><td>3</td><td>3+</td><td>3+</td><td>-1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Locus of Fury:</b> Add 1 to the Attacks characteristic of this unit if it charged this turn.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">CHAOS, UNIT, DAEMON, KHORNE</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Pink Horrors</h4>
+                <p class="hero-subtitle">Gibbering Arcana (Tzeentch Daemon Unit)</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Unit Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">5"<span>Move</span></div>
+                        <div class="stat">6+<span>Save</span></div>
+                        <div class="stat">2<span>Wounds</span></div>
+                        <div class="stat">7<span>Bravery</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Coruscating Flames</td><td>9"</td><td>1</td><td>4+</td><td>4+</td><td>-</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Split:</strong> When this unit is destroyed, you can immediately deploy a new 'Blue Horrors' unit card (1 Wound, 1 Attack, 5+ Hit, 5+ Wound, Damage 1) in its place.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">CHAOS, UNIT, DAEMON, TZEENTCH</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Grave Guard</h4>
+                <p class="hero-subtitle">Elite Skeletons (Soulblight Unit)</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Unit Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">4"<span>Move</span></div>
+                        <div class="stat">4+<span>Save</span></div>
+                        <div class="stat">3<span>Wounds</span></div>
+                        <div class="stat">10<span>Bravery</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Great Wight Blade</td><td>Melee</td><td>2</td><td>3+</td><td>3+</td><td>-1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Skeletal Shieldwall:</strong> If this unit is within 3" of a friendly SOULBLIGHT HERO, add 1 to its Save characteristic.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">DEATH, UNIT, SOULBLIGHT</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Crypt Ghouls</h4>
+                <p class="hero-subtitle">Ravenous Pack (Mordant Unit)</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Unit Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">6"<span>Move</span></div>
+                        <div class="stat">6+<span>Save</span></div>
+                        <div class="stat">2<span>Wounds</span></div>
+                        <div class="stat">5<span>Bravery</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Claw & Fangs</td><td>Melee</td><td>3</td><td>4+</td><td>4+</td><td>-</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Frenzied Assault:</strong> Add 1 to the Attacks characteristic of this unit if it is within 3" of a friendly MORDANT HERO.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">DEATH, UNIT, MORDANT</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Spirit Hosts</h4>
+                <p class="hero-subtitle">Ethereal Phantoms (Spirit Unit)</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Unit Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">8"<span>Move</span></div>
+                        <div class="stat">4+<span>Save</span></div>
+                        <div class="stat">2<span>Wounds</span></div>
+                        <div class="stat">10<span>Bravery</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Ethereal Claws</td><td>Melee</td><td>3</td><td>4+</td><td>4+</td><td>-</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Ethereal:</b> This unit ignores modifiers to its Save rolls. Can move through terrain and other units.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">DEATH, UNIT, SPIRIT</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>'Ardboyz</h4>
+                <p class="hero-subtitle">Brutal Orruk Infantry (Orruk Unit)</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Unit Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">4"<span>Move</span></div>
+                        <div class="stat">3+<span>Save</span></div>
+                        <div class="stat">3<span>Wounds</span></div>
+                        <div class="stat">6<span>Bravery</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Choppa & Shield</td><td>Melee</td><td>2</td><td>4+</td><td>3+</td><td>-</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Durable:</strong> Roll a D6 each time this unit suffers a Wound or Mortal Wound. On a 5+, that Wound or Mortal Wound is negated.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">DESTRUCTION, UNIT, ORRUK</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h4>Squig Hoppers</h4>
+                <p class="hero-subtitle">Bouncing Madness (Grot Unit)</p>
+                <div class="warscroll-card">
+                    <h5 class="warscroll-header">Unit Warscroll</h5>
+                    <div class="statline">
+                        <div class="stat">8"<span>Move</span></div>
+                        <div class="stat">6+<span>Save</span></div>
+                        <div class="stat">2<span>Wounds</span></div>
+                        <div class="stat">5<span>Bravery</span></div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr><th>Weapon</th><th>Range</th><th>Attacks</th><th>To Hit</th><th>To Wound</th><th>Rend</th><th>Damage</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Fanged Maw</td><td>Melee</td><td>4</td><td>4+</td><td>3+</td><td>-1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="ability-section">
+                        <h5>Abilities</h5>
+                        <p class="ability-text"><strong>Bounderz:</strong> After this unit makes a charge move, roll a D6. On a 4+, inflict 1 Mortal Wound on the charged enemy unit.</p>
+                    </div>
+                    <div class="keyword-section">
+                        <h5>Keywords</h5>
+                        <p class="keywords-list">DESTRUCTION, UNIT, GROT, SQUIG</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="section">
+            <h2>Campaign Progression: The Saga of Abbey Dawn</h2>
+            <p>"Abbey Dawn: Last Stand" is not merely a series of battles, but a desperate saga played out as a series of linked scenarios, each advancing the desperate struggle against the encroaching darkness, pushing the heroes to their very limits. The campaign is structured into two main arcs: the initial defense and the climactic counter-offensive.</p>
+
+            <h3>Introductory Scenarios: The Gathering Storm</h3>
+            <p>These initial scenarios depict the first desperate struggles for Abbey Dawn, as the forces of Order react to the sudden and overwhelming invasion.</p>
+
+            <h4>Scenario 1: The First Breach</h4>
+            <p><strong>Objective:</strong> The very walls of Abbey Dawn tremble as the initial Chaos incursions crash against them. Players must valiantly defend three key defensive positions along the outer walls for 5 harrowing turns, or bravely defeat the formidable Chaos Champion leading this initial, brutal assault.</p>
+            <p><strong>Setup:</strong> The heroes begin their desperate stand within the hallowed confines of the walls. Units of Khorne and Tzeentch are strategically placed at designated breach points, poised to overwhelm the defenses.</p>
+            <div class="dialogue">
+                "The air itself screams with their arrival, a cacophony of hatred and despair! Stand fast, brothers and sisters, for the fate of Abbey Dawn rests upon our blades!"<br>
+                — Knight-Questor Kelly, The Unyielding Star
+            </div>
+
+            <h4>Scenario 2: The Whispering Woods</h4>
+            <p><strong>Objective:</strong> A vital supply convoy, carrying desperately needed provisions, is ambushed deep within the Emerald Bastion's ancient woods by Orruks. Heroes must secure the convoy and clear the path, ensuring its safe passage to Abbey Dawn.</p>
+            <p><strong>Setup:</strong> Heroes start at one edge of a dense forest board. The convoy (represented by an objective marker) is in the center, surrounded by Orruk units. Reinforcements arrive from the edges.</p>
+            <div class="dialogue">
+                "The forest itself weeps. These foul creatures infest our sacred groves. We must purge them!"<br>
+                — Spirit-Warden Vicki, Voice of the Ancient Glade
+            </div>
+
+            <h4>Scenario 3: The Sunken Vault</h4>
+            <p><strong>Objective:</strong> Ancient artifacts, believed to hold power against Chaos, are hidden within a forgotten, waterlogged vault beneath the Silverwood Citadel. Tzeentchian forces seek to claim them. Heroes must reach and secure the artifacts before the Arcanites can corrupt them or escape.</p>
+            <p><strong>Setup: Evidently, I missed this section earlier. I will update this.</strong></p>
+            <div class="dialogue">
+                "Their whispers pollute the very stone. We must retrieve the relics before their insidious magic claims them!"<br>
+                — Loreweaver Lyra, Seeker of Lost Runes
+            </div>
+
+            <h4>Scenario 4: The Grave-Tide's Rise</h4>
+            <p><strong>Objective:</strong> A terrifying tide of Soulblight, led by a powerful Vampire Lord, rises from an ancient barrow-mound, threatening to engulf a nearby village. Heroes must stem the tide of undead and defeat the Vampire Lord before the village falls.</p>
+            <p><strong>Setup:</strong> A board with a central barrow-mound and a small village. Soulblight units emerge from the mound, advancing on the village. The Vampire Lord is a formidable foe.</p>
+            <div class="dialogue">
+                "Their cold embrace seeks to claim the living. Not while I draw breath! To arms!"<br>
+                — Lord-Celestant Michael, Hammer of the Dawn
+            </div>
+
+            <h3>Climactic Scenarios: The Counter-Offensive</h3>
+            <p>Having weathered the initial storm, the heroes of Abbey Dawn launch a desperate counter-offensive, striking at the heart of the enemy's power.</p>
+
+            <h4>Scenario 5: The Heart of the Blight</h4>
+            <p><strong>Objective:</strong> Assault the enemy's primary corrupted stronghold, defeat the Grand Master of Chaos, a being of immense power, and sever the dark ritual that empowers their endless forces. This is the ultimate test of their courage and skill.</p>
+            <p><strong>Setup:</strong> The battlefield transforms into a sprawling, utterly corrupted landscape. The Grand Master of Chaos is protected by elite, fanatical units drawn from all Chaos and Destruction sub-factions encountered throughout the arduous campaign, a final, insurmountable obstacle.</p>
+            <div class="dialogue">
+                "This is it. The final stand. For Abbey Dawn! For all we hold dear! Let our light banish their shadow!"<br>
+                — Ghoul King Vorlag, The Starved Blade of Justice
+            </div>
+
+            <h4>Scenario 6: The Cleansing Flame</h4>
+            <p><strong>Objective:</strong> A powerful Chaos artifact, a beacon of dark energy, must be destroyed to weaken the enemy's hold on the region. Heroes must fight their way to the artifact, activate a cleansing ritual, and defend it until it is purged.</p>
+            <p><strong>Setup:</strong> A central, heavily defended Chaos shrine. Waves of enemies (mixed Chaos factions) will attempt to disrupt the ritual. Heroes must spend glory to progress the ritual.</p>
+            <div class="dialogue">
+                "This foul relic must be unmade! Let the fires of purification consume it!"<br>
+                — Loreweaver Lyra, Seeker of Lost Runes
+            </div>
+
+            <h4>Scenario 7: The Final Stand at Abbey Dawn</h4>
+            <p><strong>Objective:</strong> The enemy, desperate after their losses, launches a final, all-out assault on the very heart of Abbey Dawn. Heroes must defend the central Keep against overwhelming numbers until reinforcements arrive or the enemy's morale breaks.</p>
+            <p><strong>Setup:</strong> A large board depicting the inner defenses of Abbey Dawn's Keep, with multiple entry points. Endless waves of mixed Chaos and Destruction units. This is a survival scenario.</p>
+            <div class="dialogue">
+                "They want our home, our hope. They will have neither! To the walls, for Abbey Dawn!"<br>
+                — Lord-Celestant Michael, Hammer of the Dawn
+            </div>
+
+            <h4>Scenario 8: Echoes of Victory / Despair</h4>
+            <p><strong>Objective:</strong> This scenario is a narrative conclusion based on the outcome of Scenario 7. If Scenario 7 was won, this is a victory celebration/epilogue. If Scenario 7 was lost, this depicts the final, tragic fall of Abbey Dawn.</p>
+            <p><strong>Setup:</strong> Varies greatly based on outcome. Could be a small, ceremonial board for victory, or a desolate, overrun board for defeat.</p>
+            <div class="dialogue">
+                "We have endured the storm. Abbey Dawn stands, battered but unbowed. The light will always find a way to pierce the deepest shadows."<br>
+                — Spirit-Warden Vicki, Voice of the Ancient Glade (Victory Dialogue)
+            </div>
+            <div class="dialogue">
+                "The light fades... Abbey Dawn falls. But our spirit, it will endure in the memory of the realms."<br>
+                — Lord-Celestant Michael, Hammer of the Dawn (Defeat Dialogue)
+            </div>
+
+            <p><strong>General Campaign Elements:</strong></p>
+            <ul>
+                <li><strong>Scenario Objectives:</strong> Each scenario presents specific, vital objectives (e.g., defend a sacred location, eliminate a key enemy commander, escort a vulnerable VIP through perilous territory).</li>
+                <li><strong>Persistent Wounds:</strong> The scars of battle endure. <span class="keyword">Wounds</span> taken by heroes in one scenario might tragically carry over into the next, demanding strategic healing or forcing them to start with fewer <span class="keyword">Wounds</span>, adding a layer of grim realism.</li>
+                <li><strong>Upgrades:</strong> For every hard-won victory in a scenario or the completion of specific <span class="keyword">Quests</span>, heroes might unlock new, more powerful cards for their decks or gain permanent, invaluable stat bonuses, reflecting their growth in the face of adversity.</li>
+                <li><strong>Story Choices:</strong> Some pivotal scenarios might present players with difficult, branching choices that profoundly affect the campaign's narrative path, leading to different challenges and outcomes.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Drafting Your Force: Heroes & Units</h2>
+            <p>Before embarking on a campaign or an adversarial battle, players will engage in a strategic Draft to assemble their force of Heroes and supporting Units. This ensures variety and replayability, as players must adapt their strategies based on available champions and their accompanying forces.</p>
+            <p>The game is optimized for 2-8 players. The number of heroes and units each player controls can be scaled:</p>
+            <ul>
+                <li><strong>2 Players:</strong> Each player controls 3 heroes and drafts 3 Unit Cards to add to their heroes' decks.</li>
+                <li><strong>3-4 Players:</strong> Each player controls 2 heroes and drafts 2 Unit Cards to add to their heroes' decks.</li>
+                <li><strong>5-8 Players:</strong> Each player controls 1 hero and drafts 1 Unit Card to add to their hero's deck.</li>
+            </ul>
+            <ol>
+                <li><strong>Initial Hero Selection:</strong> For a cooperative campaign, each player first chooses one hero from the entire roster to be their primary champion. For adversarial mode, each player chooses one hero to be their faction leader.</li>
+                <li><strong>Hero Draft Rounds:</strong>
+                    <ul>
+                        <li>All remaining heroes not chosen in step 1 are shuffled into a "Hero Draft Pool" deck.</li>
+                        <li>Players take turns drafting additional heroes from this pool until each player has their allocated number of heroes. For 2 players, Player 1 draws 2, picks one, passes the other. Player 2 then takes that hero. Repeat. For more players, each player draws 2, picks one, passes left.</li>
+                    </ul>
+                </li>
+                <li><strong>Unit Card Draft Rounds:</strong>
+                    <ul>
+                        <li>A separate "Unit Card Draft Pool" is created, containing all available Unit Cards.</li>
+                        <li>Players then take turns drafting Unit Cards from this pool until each player has their allocated number of Unit Cards. Each drafted Unit Card is then added to the deck of one of their chosen heroes. Players decide which hero receives which Unit Card, allowing for synergistic deck building.</li>
+                    </ul>
+                </li>
+                <li><strong>Finalizing Rosters:</strong> Once all drafting rounds are complete, players reveal their full hero and unit rosters. This strategic choice of heroes and units will significantly impact the tactical options available in the upcoming scenario.</li>
+            </ol>
+            <p class="example"><em>Example: In a 2-player cooperative campaign, Player A chooses Lord-Celestant Michael as their initial hero. Player B chooses Loreweaver Lyra. For the Hero Draft, the remaining 16 heroes are shuffled. Player A draws 2, picks one (e.g., Knight-Questor Kelly), and passes the other to Player B. Player B then takes that hero. This process repeats until both players have their 3 chosen heroes. Then, a separate pool of Unit Cards is prepared, and players take turns drafting 3 Unit Cards each. Player A might draft a 'Liberator Unit' card and add it to Michael's deck, and an 'Aelven Wardens' card to Kelly's deck.</em></p>
+        </div>
+
+        <div class="section">
+            <h2>Chaos vs. Order: Adversarial Game Mode</h2>
+            <p>For those who seek a direct confrontation, "Abbey Dawn: Last Stand" offers an adversarial game mode where one player commands the valiant **Order Heroes** (defending), and another commands the brutal **Chaos and Destruction Heroes** (attacking).</p>
+            <h3>Game Setup</h3>
+            <ul>
+                <li>One player selects their allocated number of Order Heroes and drafts their Unit Cards from the Order Unit Pool, adding them to their heroes' decks.</li>
+                <li>The other player selects their allocated number of Chaos/Destruction Heroes and drafts their Unit Cards from the Chaos/Destruction Unit Pool, adding them to their heroes' decks.</li>
+                <li>A specific scenario is chosen (e.g., "The First Breach" or a custom objective-based map). The scenario will define the defender's setup zone and the attacker's deployment.</li>
+                <li>Each hero has their own unique card deck, now supplemented by drafted Unit Cards.</li>
+            </ul>
+            <h3>Turn Structure</h3>
+            <p>The game proceeds in alternating player turns, rather than distinct phases:</p>
+            <ol>
+                <li><strong>Order Player Turn:</strong>
+                    <ul>
+                        <li>Generates Glory for their active heroes.</li>
+                        <li>Activates each of their heroes and deployed Unit Cards one at a time, performing movement, playing cards (abilities, spells, blessings, unit deployments, quests), and resolving combat.</li>
+                    </ul>
+                </li>
+                <li><strong>Chaos/Destruction Player Turn:</strong>
+                    <ul>
+                        <li>Generates Glory for their active heroes.</li>
+                        <li>Activates each of their heroes and deployed Unit Cards one at a time, performing movement, playing cards (abilities, spells, blessings, unit deployments, quests), and resolving combat.</li>
+                    </ul>
+                </li>
+            </ol>
+            <p>The game continues until the scenario objectives are met or one side is entirely defeated. This mode offers a direct, competitive experience, testing tactical prowess against a thinking opponent.</p>
+        </div>
+
+        <div class="section">
+            <h2>Winning and Losing</h2>
+            <p>The fate of Abbey Dawn hangs in the balance, determined by the heroes' success or failure. The struggle for the realms is an endless, grinding war, and sometimes, even a 'win' is merely a reprieve, a moment of respite before the next wave of darkness crashes upon the shores of hope.</p>
+            <ul>
+                <li><strong>Winning a Scenario:</strong> Players achieve victory in a scenario by successfully completing all its primary objectives before a specific turn limit is reached, or before all their valiant heroes are tragically defeated. Alternatively, players can achieve a special victory by either holding 3 active Blessing cards simultaneously on the battlefield, or by successfully casting a total of 4 Blessing cards within a single scenario.</li>
+                <li><strong>Losing a Scenario:</strong> Players suffer defeat if all heroes are incapacitated or removed from play, or if a critical objective is irrevocably failed (e.g., a key NPC dies, a vital location is overrun by the enemy hordes).</li>
+                <li><strong>Campaign Victory:</strong> The entire campaign is won by successfully completing all introductory scenarios and then triumphantly completing the final, climactic scenario, successfully pushing back the main invasion force and securing Abbey Dawn's future.</li>
+                <li><strong>Campaign Defeat:</strong> The campaign is tragically lost if too many scenarios are lost, leading to the inevitable and devastating fall of Abbey Dawn to the forces of darkness.</li>
+            </ul>
+        </div>
+
+        <div class="dialogue">
+            "We have endured the storm. Abbey Dawn stands, battered but unbowed. The light will always find a way to pierce the deepest shadows."<br>
+            — Spirit-Warden Vicki, Voice of the Ancient Glade
+        </div>
+    </div>
+</body>
+</html>
